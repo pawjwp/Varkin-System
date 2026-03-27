@@ -1,3 +1,5 @@
+![Varkin-System](https://raw.githubusercontent.com/pawjwp/Varkin-System/refs/heads/main/varkin-system-banner-title-transparent.png)
+
 ## About
 
 The Varkin System is an add-on mod for [Ad Astra](https://modrinth.com/mod/ad-astra), adding a new solar system with unique content. The mod is in very early stages at the moment, but the final version could include up to 6 unique planetary bodies.
