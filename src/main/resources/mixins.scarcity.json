@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.pawjwp.varkin_system.mixin",
+  "refmap": "mixins.varkin_system.refmap.json",
+  "mixins": [],
+  "client": [],
+  "server": [],
+  "verbose": true,
+  "mixinextras": {
+    "minVersion": "0.5.3"
+  }
+}
