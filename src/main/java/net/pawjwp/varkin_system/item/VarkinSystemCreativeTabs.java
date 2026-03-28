@@ -1,6 +1,5 @@
 package net.pawjwp.varkin_system.item;
 
-import com.google.errorprone.annotations.Var;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,7 +14,7 @@ public class VarkinSystemCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, VarkinSystem.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> SCARCITY_TAB = CREATIVE_MODE_TABS.register("varkin_system_tab",
+    public static final RegistryObject<CreativeModeTab> VARKIN_SYSTEM_TAB = CREATIVE_MODE_TABS.register("varkin_system_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.FIREWORK_STAR/*.get()*/))
                     .title(Component.translatable("creativetab.varkin_system_tab"))
                     .displayItems((pParameters, pOutput) -> {

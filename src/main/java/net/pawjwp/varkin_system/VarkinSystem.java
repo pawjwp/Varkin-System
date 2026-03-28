@@ -55,7 +55,7 @@ public class VarkinSystem
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if(event.getTabKey() == VarkinSystemCreativeTabs.SCARCITY_TAB.getKey()) {
+        if(event.getTabKey() == VarkinSystemCreativeTabs.VARKIN_SYSTEM_TAB.getKey()) {
             VarkinSystemItems.CREATIVE_TAB_ITEMS.forEach(event::accept);
         }
     }
