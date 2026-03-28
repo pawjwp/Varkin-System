@@ -3,7 +3,10 @@
   "minVersion": "0.8",
   "package": "net.pawjwp.varkin_system.mixin",
   "refmap": "mixins.varkin_system.refmap.json",
-  "mixins": [],
+  "mixins": [
+    "SurfaceRulesContextAccessor",
+    "SurfaceSystemAccessor"
+  ],
   "client": [],
   "server": [],
   "verbose": true,
