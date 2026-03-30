@@ -2,6 +2,7 @@ package net.pawjwp.varkin_system.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,7 +31,7 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             pickaxeTag.add(
                     set.small().get(), set.medium().get(),
                     set.large().get(), set.cluster().get(),
-                    set.budding().get()
+                    set.budding().get(), set.storageBlock().get()
             );
 
             crystalBlocksTag.add(
@@ -40,6 +41,10 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
 
             clusterTag.add(set.cluster().get());
             buddingTag.add(set.budding().get());
+
+            // forge:storage_blocks/CRYSTALNAME (block tag)
+            this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name())))
+                    .add(set.storageBlock().get());
         }
     }
 }

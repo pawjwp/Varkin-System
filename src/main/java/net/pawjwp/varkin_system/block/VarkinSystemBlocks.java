@@ -33,12 +33,15 @@ public class VarkinSystemBlocks {
             RegistryObject<Block> large,
             RegistryObject<Block> cluster,
             RegistryObject<Block> budding,
+            RegistryObject<Block> storageBlock,
             RegistryObject<Item> smallItem,
             RegistryObject<Item> mediumItem,
             RegistryObject<Item> largeItem,
             RegistryObject<Item> clusterItem,
             RegistryObject<Item> buddingItem,
-            RegistryObject<Item> shard
+            RegistryObject<Item> storageBlockItem,
+            RegistryObject<Item> shard,
+            RegistryObject<Item> dust
     ) {}
 
     private static final Supplier<BlockBehaviour.Properties> CRYSTAL_BASE =
@@ -92,6 +95,15 @@ public class VarkinSystemBlocks {
                 )
         );
 
+        RegistryObject<Block> storageBlock = BLOCKS.register(name + "_block",
+                () -> new Block(BlockBehaviour.Properties.of()
+                        .mapColor(color)
+                        .strength(strength + 1.0F, 6.0F)
+                        .sound(SoundType.AMETHYST)
+                        .requiresCorrectToolForDrops()
+                )
+        );
+
         RegistryObject<Item> smallItem = BLOCK_ITEMS.register(name + "_crystal_small",
                 () -> new BlockItem(small.get(), new Item.Properties().fireResistant()));
         RegistryObject<Item> mediumItem = BLOCK_ITEMS.register(name + "_crystal_medium",
@@ -102,18 +114,23 @@ public class VarkinSystemBlocks {
                 () -> new BlockItem(cluster.get(), new Item.Properties().fireResistant()));
         RegistryObject<Item> buddingItem = BLOCK_ITEMS.register(name + "_crystal_budding",
                 () -> new BlockItem(budding.get(), new Item.Properties().fireResistant()));
+        RegistryObject<Item> storageBlockItem = BLOCK_ITEMS.register(name + "_block",
+                () -> new BlockItem(storageBlock.get(), new Item.Properties().fireResistant()));
 
         RegistryObject<Item> shard = VarkinSystemItems.registerWithTab(
                 name + "_crystal_shard", () -> new Item(new Item.Properties().fireResistant()));
+        RegistryObject<Item> dust = VarkinSystemItems.registerWithTab(
+                name + "_dust", () -> new Item(new Item.Properties().fireResistant()));
 
         VarkinSystemItems.CREATIVE_TAB_ITEMS.add(smallItem);
         VarkinSystemItems.CREATIVE_TAB_ITEMS.add(mediumItem);
         VarkinSystemItems.CREATIVE_TAB_ITEMS.add(largeItem);
         VarkinSystemItems.CREATIVE_TAB_ITEMS.add(clusterItem);
         VarkinSystemItems.CREATIVE_TAB_ITEMS.add(buddingItem);
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(storageBlockItem);
 
-        CrystalSet set = new CrystalSet(name, small, medium, large, cluster, budding,
-                smallItem, mediumItem, largeItem, clusterItem, buddingItem, shard);
+        CrystalSet set = new CrystalSet(name, small, medium, large, cluster, budding, storageBlock,
+                smallItem, mediumItem, largeItem, clusterItem, buddingItem, storageBlockItem, shard, dust);
         CRYSTAL_SETS.add(set);
         return set;
     }

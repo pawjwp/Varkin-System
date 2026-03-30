@@ -34,6 +34,9 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
 
             // Budding block drops nothing
             this.add(set.budding().get(), noDrop());
+
+            // Storage block drops self
+            this.dropSelf(set.storageBlock().get());
         }
     }
 
