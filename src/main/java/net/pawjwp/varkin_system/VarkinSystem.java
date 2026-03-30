@@ -14,6 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.pawjwp.varkin_system.item.VarkinSystemCreativeTabs;
 import net.pawjwp.varkin_system.item.VarkinSystemItems;
+import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.worldgen.surfacerules.VarkinSystemSurfaceRules;
 import org.slf4j.Logger;
 
@@ -33,6 +34,7 @@ public class VarkinSystem
 
         VarkinSystemCreativeTabs.register(modEventBus);
         VarkinSystemItems.register(modEventBus);
+        VarkinSystemBlocks.register(modEventBus);
         VarkinSystemSurfaceRules.register(modEventBus);
 
         // Register the commonSetup method for modloading
