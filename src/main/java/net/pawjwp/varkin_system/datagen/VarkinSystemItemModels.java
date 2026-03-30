@@ -2,11 +2,15 @@ package net.pawjwp.varkin_system.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.pawjwp.varkin_system.VarkinSystem;
+import net.pawjwp.varkin_system.block.BuddingCrystalBlock;
+import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
+import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -29,9 +33,18 @@ public class VarkinSystemItemModels extends ItemModelProvider {
 
         // If needed in the future, exclude specific items here
         // items.remove(VarkinSystemItems.EXAMPLE_ITEM.get());
+        Set<Item> crystalStageItems = new HashSet<>();
+        for (CrystalSet set : VarkinSystemBlocks.CRYSTAL_SETS) {
+            crystalStageItems.add(set.smallItem().get());
+            crystalStageItems.add(set.mediumItem().get());
+            crystalStageItems.add(set.largeItem().get());
+            crystalStageItems.add(set.clusterItem().get());
+        }
+        takeAll(items, crystalStageItems::contains)
+                .forEach(item -> itemGeneratedModel(item, resourceBlock(itemName(item))));
 
         // Blocks whose items look alike
-        // takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
+        takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
 
         // Remaining items
         items.forEach(item -> itemGeneratedModel(item, resourceItem(itemName(item))));

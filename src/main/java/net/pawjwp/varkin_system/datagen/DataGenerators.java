@@ -20,6 +20,17 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+        // Server-side
+        generator.addProvider(event.includeServer(), VarkinSystemLootTables.create(packOutput));
+
+        // Client-side
+        generator.addProvider(event.includeClient(), new VarkinSystemBlockStates(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new VarkinSystemItemModels(packOutput, existingFileHelper));
+
+        // Tags
+        VarkinSystemBlockTags blockTagGen = generator.addProvider(event.includeServer(),
+                new VarkinSystemBlockTags(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(),
+                new VarkinSystemItemTags(packOutput, lookupProvider, blockTagGen.contentsGetter(), existingFileHelper));
     }
 }
