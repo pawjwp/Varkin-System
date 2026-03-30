@@ -1,0 +1,5 @@
+// 1.20.1	2026-03-29T23:40:46.9445437	Tags for minecraft:block mod id varkin_system
+d83f2819509b76c7520a1002b3545a1fffa2f6b4 data/minecraft/tags/blocks/mineable/pickaxe.json
+bca0511409673ef26d2142bbd9974b80d9dad003 data/varkin_system/tags/blocks/budding_crystals.json
+e48b0ba2693a8c64925800467fbb3cd20dd3694d data/varkin_system/tags/blocks/crystal_blocks.json
+9cb0a92ca4af819cc6334bd6ad55d546f447f2f9 data/varkin_system/tags/blocks/crystal_clusters.json

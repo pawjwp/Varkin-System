@@ -1,0 +1,10 @@
+{
+  "values": [
+    "varkin_system:chalcopyrite_crystal_cluster",
+    "varkin_system:sphalerite_crystal_cluster",
+    "varkin_system:pentlandite_crystal_cluster",
+    "varkin_system:stannite_crystal_cluster",
+    "varkin_system:galena_crystal_cluster",
+    "varkin_system:electrum_crystal_cluster"
+  ]
+}

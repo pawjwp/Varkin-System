@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "varkin_system:block/sphalerite_crystal_small",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "varkin_system:block/sphalerite_crystal_small",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "varkin_system:block/sphalerite_crystal_small",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "varkin_system:block/sphalerite_crystal_small",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "varkin_system:block/sphalerite_crystal_small"
+    },
+    "facing=west": {
+      "model": "varkin_system:block/sphalerite_crystal_small",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
