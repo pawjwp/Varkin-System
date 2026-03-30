@@ -45,8 +45,8 @@ public class VarkinSystem
         modEventBus.addListener(this::addCreative);
 
         // Register config
-        modEventBus.addListener(VarkinSystemConfig::onLoad);
-        modEventBus.addListener(VarkinSystemConfig::onReload);
+        // modEventBus.addListener(VarkinSystemConfig::onLoad);
+        // modEventBus.addListener(VarkinSystemConfig::onReload);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
