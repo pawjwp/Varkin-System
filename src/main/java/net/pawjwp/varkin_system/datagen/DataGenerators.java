@@ -22,6 +22,7 @@ public class DataGenerators {
 
         // Server-side
         generator.addProvider(event.includeServer(), VarkinSystemLootTables.create(packOutput));
+        generator.addProvider(event.includeServer(), new VarkinSystemRecipes(packOutput));
 
         // Client-side
         generator.addProvider(event.includeClient(), new VarkinSystemBlockStates(packOutput, existingFileHelper));
