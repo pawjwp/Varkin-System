@@ -205,7 +205,9 @@ dependencies {
 
     // TConstruct
     runtimeOnly fg.deobf("curse.maven:mantle-74924:7563777")
+    compileOnly fg.deobf("curse.maven:mantle-74924:7563777")
     runtimeOnly fg.deobf("curse.maven:tinkers-construct-74072:7449219")
+    compileOnly fg.deobf("curse.maven:tinkers-construct-74072:7449219")
 
     // Thermal
     runtimeOnly fg.deobf("curse.maven:cofh-core-69162:5374122")
@@ -215,10 +217,20 @@ dependencies {
 
     // Ex Deorum
     runtimeOnly fg.deobf("curse.maven:ex-deorum-901420:7666539")
+    compileOnly fg.deobf("curse.maven:ex-deorum-901420:7666539")
     runtimeOnly fg.deobf('com.github.thedarkcolour:ModKit:cc8f1c11ec')
 
-    // Misc
+    // Create
     runtimeOnly fg.deobf("curse.maven:create-328085:7178761")
+    compileOnly fg.deobf("curse.maven:create-328085:7178761")
+
+    // EnderIO
+    runtimeOnly fg.deobf("curse.maven:ender-io-64578:7726916")
+    compileOnly fg.deobf("curse.maven:ender-io-64578:7726916")
+
+    // Mekanism
+    runtimeOnly fg.deobf("curse.maven:mekanism-268560:6552911")
+    compileOnly fg.deobf("curse.maven:mekanism-268560:6552911")
 
     // Mixins
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
