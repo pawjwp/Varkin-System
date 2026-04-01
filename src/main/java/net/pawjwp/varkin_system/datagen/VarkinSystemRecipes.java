@@ -6,6 +6,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.pawjwp.varkin_system.datagen.recipe.VarkinSystemCraftingRecipes;
 import net.pawjwp.varkin_system.datagen.recipe.VarkinSystemMekanismRecipes;
+import net.pawjwp.varkin_system.datagen.recipe.VarkinSystemTConstructRecipes;
 
 import java.util.function.Consumer;
 
@@ -18,5 +19,6 @@ public class VarkinSystemRecipes extends RecipeProvider implements IConditionBui
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         VarkinSystemCraftingRecipes.register(consumer);
         VarkinSystemMekanismRecipes.register(consumer);
+        VarkinSystemTConstructRecipes.register(consumer);
     }
 }
