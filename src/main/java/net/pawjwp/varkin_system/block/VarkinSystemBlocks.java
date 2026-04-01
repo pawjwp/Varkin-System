@@ -87,7 +87,7 @@ public class VarkinSystemBlocks {
         );
 
         RegistryObject<Block> budding = BLOCKS.register(name + "_crystal_budding",
-                () -> new BuddingCrystalBlock(List.of(small, medium, large, cluster),5, true, CRYSTAL_BASE.get()
+                () -> new BuddingCrystalBlock(List.of(small, medium, large, cluster),5, true, BlockBehaviour.Properties.of()
                         .mapColor(color)
                         .strength(strength)
                         .sound(SoundType.AMETHYST)
