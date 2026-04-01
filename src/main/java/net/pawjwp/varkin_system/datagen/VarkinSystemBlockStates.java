@@ -44,8 +44,8 @@ public class VarkinSystemBlockStates extends BlockStateProvider {
                             resourceBlock(set.name() + "_crystal_budding")));
 
             simpleBlock(set.storageBlock().get(),
-                    models().cubeAll(set.name() + "_block",
-                            resourceBlock(set.name() + "_block")));
+                    models().cubeAll(set.name() + "_crystal_block",
+                            resourceBlock(set.name() + "_crystal_block")));
         }
     }
 

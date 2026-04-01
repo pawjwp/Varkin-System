@@ -95,7 +95,7 @@ public class VarkinSystemBlocks {
                 )
         );
 
-        RegistryObject<Block> storageBlock = BLOCKS.register(name + "_block",
+        RegistryObject<Block> storageBlock = BLOCKS.register(name + "_crystal_block",
                 () -> new Block(BlockBehaviour.Properties.of()
                         .mapColor(color)
                         .strength(strength + 1.0F, 6.0F)
@@ -114,7 +114,7 @@ public class VarkinSystemBlocks {
                 () -> new BlockItem(cluster.get(), new Item.Properties().fireResistant()));
         RegistryObject<Item> buddingItem = BLOCK_ITEMS.register(name + "_crystal_budding",
                 () -> new BlockItem(budding.get(), new Item.Properties().fireResistant()));
-        RegistryObject<Item> storageBlockItem = BLOCK_ITEMS.register(name + "_block",
+        RegistryObject<Item> storageBlockItem = BLOCK_ITEMS.register(name + "_crystal_block",
                 () -> new BlockItem(storageBlock.get(), new Item.Properties().fireResistant()));
 
         RegistryObject<Item> shard = VarkinSystemItems.registerWithTab(
