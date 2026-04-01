@@ -9,6 +9,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.pawjwp.varkin_system.datagen.recipe.VarkinSystemThermalRecipes;
+import net.pawjwp.varkin_system.datagen.recipe.VarkinSystemEnderIORecipes;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -25,6 +26,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), VarkinSystemLootTables.create(packOutput));
         generator.addProvider(event.includeServer(), new VarkinSystemRecipes(packOutput));
         generator.addProvider(event.includeServer(), new VarkinSystemThermalRecipes(packOutput));
+        generator.addProvider(event.includeServer(), new VarkinSystemEnderIORecipes(packOutput));
 
         // Client-side
         generator.addProvider(event.includeClient(), new VarkinSystemBlockStates(packOutput, existingFileHelper));
