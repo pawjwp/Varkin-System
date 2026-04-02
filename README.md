@@ -15,7 +15,12 @@ This mod was created for my modpack, [Desolate Planet](https://modrinth.com/modp
 
 ## Features
 
-Will be updated in more detail as they are implemented.
+- Lava-loggable crystals for ore collection
+  - Configured features to generate clusters of these crystals
+  - Detailed integration recipes for the Thermal Series and Tinker's Construct
+  - Some simple integration recipes with Create, Mekanism, and EnderIO
+- A custom surface rule for generating striations of volcanic rock
+Most current features do not function on their own unless implemented via datapacks or via KubeJS. This list will be updated in more detail as more features are implemented.
 
 ## Suggestions
 
