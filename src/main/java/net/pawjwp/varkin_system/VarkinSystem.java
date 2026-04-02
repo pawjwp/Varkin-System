@@ -12,6 +12,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import earth.terrarium.adastra.api.events.AdAstraEvents;
 import net.pawjwp.varkin_system.item.VarkinSystemCreativeTabs;
 import net.pawjwp.varkin_system.item.VarkinSystemItems;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
@@ -55,8 +56,13 @@ public class VarkinSystem
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
+        // Prevent Ad Astra's gravity adjustment from launching NoGravity entities into the sky.
+        // Ad Astra adds (0.08 - 0.08*gravity) to y velocity before vanilla's, expecting vanilla to subtract 0.08 later
+        // This makes NoGravity entities use vanilla gravity instead, ignoring Ad Astra's gravity adjustment and allowing them to float normally
+        AdAstraEvents.EntityGravityEvent.register((entity, gravity) -> {
+            if (entity.isNoGravity()) return 1.0f;
+            return gravity;
+        });
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
