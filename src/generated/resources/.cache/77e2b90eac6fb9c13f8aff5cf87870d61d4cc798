@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-01T22:16:39.6617659	Tags for minecraft:block mod id varkin_system
+// 1.20.1	2026-04-02T01:04:38.2526815	Tags for minecraft:block mod id varkin_system
 eee47ed5c254612c5e36b0c0e5194e954822457b data/forge/tags/blocks/storage_blocks/chalcopyrite.json
 b75736f0b2390334265ebad375df5077ec322284 data/forge/tags/blocks/storage_blocks/electrum.json
 1a7fbea1cbdb1d6a8fc0deaec05ed28d3687428e data/forge/tags/blocks/storage_blocks/galena.json
@@ -6,6 +6,7 @@ a82023019a5f71bc533e7ef03d28d37d250a9e24 data/forge/tags/blocks/storage_blocks/p
 c577467a40e69ba986569a356353db86f0298ee0 data/forge/tags/blocks/storage_blocks/sphalerite.json
 c556ba5628cb3fa4785f4984291cc2d3a9e56945 data/forge/tags/blocks/storage_blocks/stannite.json
 49dd885ecdf4b18de14f35fb6e5e2c435419f2cb data/minecraft/tags/blocks/mineable/pickaxe.json
+e680dafd995ae0b615050aa947fbc7af6a7093f8 data/varkin_system/tags/blocks/base_stone_icarus.json
 bca0511409673ef26d2142bbd9974b80d9dad003 data/varkin_system/tags/blocks/budding_crystals.json
 e48b0ba2693a8c64925800467fbb3cd20dd3694d data/varkin_system/tags/blocks/crystal_blocks.json
 9cb0a92ca4af819cc6334bd6ad55d546f447f2f9 data/varkin_system/tags/blocks/crystal_clusters.json

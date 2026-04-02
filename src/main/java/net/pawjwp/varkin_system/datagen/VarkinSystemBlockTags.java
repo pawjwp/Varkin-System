@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.pawjwp.varkin_system.VarkinSystem;
@@ -46,5 +47,23 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name())))
                     .add(set.storageBlock().get());
         }
+
+        this.tag(VarkinSystemTags.BASE_STONE_ICARUS)
+                .add(
+                        Blocks.NETHERRACK,
+                        Blocks.BLACKSTONE,
+                        Blocks.BASALT,
+                        Blocks.SMOOTH_BASALT,
+                        Blocks.TUFF,
+                        Blocks.ANDESITE,
+                        Blocks.GRANITE,
+                        Blocks.DIORITE
+                )
+                .addOptional(ResourceLocation.fromNamespaceAndPath("tconstruct", "seared_stone"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("tconstruct", "scorched_stone"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "slag_block"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "rich_slag_block"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("create", "scoria"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("create", "scorchia"));
     }
 }

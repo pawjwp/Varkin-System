@@ -1,0 +1,36 @@
+{
+  "values": [
+    "minecraft:netherrack",
+    "minecraft:blackstone",
+    "minecraft:basalt",
+    "minecraft:smooth_basalt",
+    "minecraft:tuff",
+    "minecraft:andesite",
+    "minecraft:granite",
+    "minecraft:diorite",
+    {
+      "id": "tconstruct:seared_stone",
+      "required": false
+    },
+    {
+      "id": "tconstruct:scorched_stone",
+      "required": false
+    },
+    {
+      "id": "thermal:slag_block",
+      "required": false
+    },
+    {
+      "id": "thermal:rich_slag_block",
+      "required": false
+    },
+    {
+      "id": "create:scoria",
+      "required": false
+    },
+    {
+      "id": "create:scorchia",
+      "required": false
+    }
+  ]
+}

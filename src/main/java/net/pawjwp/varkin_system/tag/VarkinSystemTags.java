@@ -17,6 +17,8 @@ public class VarkinSystemTags {
             BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "crystal_clusters"));
     public static final TagKey<Block> BUDDING_CRYSTALS =
             BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "budding_crystals"));
+    public static final TagKey<Block> BASE_STONE_ICARUS =
+            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "base_stone_icarus"));
 
     // Item tags
     public static final TagKey<Item> CRYSTAL_SHARDS =
