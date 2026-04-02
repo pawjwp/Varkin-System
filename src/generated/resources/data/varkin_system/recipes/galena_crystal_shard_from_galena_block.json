@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "varkin_system:galena_crystal_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "varkin_system:galena_crystal_shard"
+  }
+}

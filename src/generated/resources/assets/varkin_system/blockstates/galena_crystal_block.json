@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "varkin_system:block/galena_crystal_block"
+    }
+  }
+}

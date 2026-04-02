@@ -1,0 +1,26 @@
+{
+  "type": "thermal:centrifuge",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
+  "energy": 4000,
+  "ingredient": {
+    "count": 2,
+    "tag": "forge:dusts/pentlandite"
+  },
+  "result": [
+    {
+      "item": "thermal:iron_dust"
+    },
+    {
+      "item": "thermal:nickel_dust"
+    },
+    {
+      "count": 2,
+      "item": "thermal:sulfur_dust"
+    }
+  ]
+}

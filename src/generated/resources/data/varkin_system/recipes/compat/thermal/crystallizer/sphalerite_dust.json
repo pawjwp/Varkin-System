@@ -1,0 +1,23 @@
+{
+  "type": "thermal:crystallizer",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
+  "ingredients": [
+    {
+      "amount": 500,
+      "fluid": "minecraft:lava"
+    },
+    {
+      "tag": "forge:dusts/sphalerite"
+    }
+  ],
+  "result": [
+    {
+      "item": "varkin_system:sphalerite_crystal_shard"
+    }
+  ]
+}

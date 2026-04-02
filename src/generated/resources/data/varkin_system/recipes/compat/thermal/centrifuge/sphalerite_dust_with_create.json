@@ -1,0 +1,30 @@
+{
+  "type": "thermal:centrifuge",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "energy": 4000,
+  "ingredient": {
+    "count": 2,
+    "tag": "forge:dusts/sphalerite"
+  },
+  "result": [
+    {
+      "item": "create:crushed_raw_zinc"
+    },
+    {
+      "item": "thermal:iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "thermal:sulfur_dust"
+    }
+  ]
+}

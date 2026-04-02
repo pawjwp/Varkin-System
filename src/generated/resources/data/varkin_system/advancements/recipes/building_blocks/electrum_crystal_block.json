@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_electrum_crystal_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "varkin_system:electrum_crystal_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "varkin_system:electrum_crystal_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_electrum_crystal_shard",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "varkin_system:electrum_crystal_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,31 @@
+{
+  "type": "thermal:centrifuge",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "create"
+      }
+    }
+  ],
+  "energy": 4000,
+  "ingredient": {
+    "count": 2,
+    "tag": "forge:dusts/sphalerite"
+  },
+  "result": [
+    {
+      "count": 2,
+      "item": "thermal:iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "thermal:sulfur_dust"
+    }
+  ]
+}

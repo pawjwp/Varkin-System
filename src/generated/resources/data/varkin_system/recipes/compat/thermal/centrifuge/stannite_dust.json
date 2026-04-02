@@ -1,0 +1,31 @@
+{
+  "type": "thermal:centrifuge",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
+  "energy": 4000,
+  "ingredient": {
+    "count": 2,
+    "tag": "forge:dusts/stannite"
+  },
+  "result": [
+    {
+      "item": "thermal:copper_dust"
+    },
+    {
+      "chance": 0.5,
+      "item": "thermal:iron_dust"
+    },
+    {
+      "chance": 0.5,
+      "item": "thermal:tin_dust"
+    },
+    {
+      "count": 2,
+      "item": "thermal:sulfur_dust"
+    }
+  ]
+}

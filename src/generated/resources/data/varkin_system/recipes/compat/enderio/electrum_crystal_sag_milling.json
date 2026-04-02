@@ -1,0 +1,29 @@
+{
+  "type": "enderio:sag_milling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "enderio"
+    }
+  ],
+  "energy": 2400,
+  "input": {
+    "tag": "forge:gems/electrum"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "item": {
+        "item": "varkin_system:electrum_dust"
+      },
+      "optional": false
+    },
+    {
+      "chance": 0.5,
+      "item": {
+        "item": "varkin_system:electrum_dust"
+      },
+      "optional": false
+    }
+  ]
+}

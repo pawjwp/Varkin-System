@@ -1,2 +1,20 @@
-// 1.20.1	2026-03-29T23:40:46.9418028	Tags for minecraft:item mod id varkin_system
+// 1.20.1	2026-04-01T22:16:39.6566257	Tags for minecraft:item mod id varkin_system
+bc8189015447fd79be1d9569eac95839c84aab5e data/forge/tags/items/dusts/chalcopyrite.json
+e49579b1a245f0033a457d02632c0529aa240b3a data/forge/tags/items/dusts/electrum.json
+398b7cc0da24e2319b6e58ac1f580409d4a3818f data/forge/tags/items/dusts/galena.json
+787a3ec42a26db155986aa5f56abb72a56f8b809 data/forge/tags/items/dusts/pentlandite.json
+355dec510f19fe31992805ed5a4ff9a4ca069198 data/forge/tags/items/dusts/sphalerite.json
+e7dbe1eb056cd39e57f90c1c81c4c2f240832c2f data/forge/tags/items/dusts/stannite.json
+c7350fc27f6daa856f93c9f552f121a042421512 data/forge/tags/items/gems/chalcopyrite.json
+f056f9f6ffbd104c637581f5907c35e7583fa4ad data/forge/tags/items/gems/electrum.json
+30e1463a4f5a06597ea2f625330f110c1f72af2d data/forge/tags/items/gems/galena.json
+987997628e14d578a44c4971d3207320840ad1cc data/forge/tags/items/gems/pentlandite.json
+8bedbb9818eb20ce30a3951b22d94983cf293492 data/forge/tags/items/gems/sphalerite.json
+cf291c2c7432f7508dfd2bf6a11d0c9b99a4e76c data/forge/tags/items/gems/stannite.json
+eee47ed5c254612c5e36b0c0e5194e954822457b data/forge/tags/items/storage_blocks/chalcopyrite.json
+b75736f0b2390334265ebad375df5077ec322284 data/forge/tags/items/storage_blocks/electrum.json
+1a7fbea1cbdb1d6a8fc0deaec05ed28d3687428e data/forge/tags/items/storage_blocks/galena.json
+a82023019a5f71bc533e7ef03d28d37d250a9e24 data/forge/tags/items/storage_blocks/pentlandite.json
+c577467a40e69ba986569a356353db86f0298ee0 data/forge/tags/items/storage_blocks/sphalerite.json
+c556ba5628cb3fa4785f4984291cc2d3a9e56945 data/forge/tags/items/storage_blocks/stannite.json
 2412edbb965c97c5803e128827b5b5c9134aa418 data/varkin_system/tags/items/crystal_shards.json

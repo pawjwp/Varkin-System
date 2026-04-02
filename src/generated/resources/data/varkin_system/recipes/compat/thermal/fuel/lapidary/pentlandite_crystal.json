@@ -1,0 +1,13 @@
+{
+  "type": "thermal:lapidary_fuel",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
+  "energy": 50000,
+  "ingredient": {
+    "tag": "forge:gems/pentlandite"
+  }
+}

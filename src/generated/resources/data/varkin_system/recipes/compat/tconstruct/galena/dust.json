@@ -1,0 +1,31 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:melting",
+        "byproducts": [
+          {
+            "amount": 30,
+            "fluid": "tconstruct:molten_silver"
+          }
+        ],
+        "ingredient": {
+          "tag": "forge:dusts/galena"
+        },
+        "result": {
+          "amount": 90,
+          "fluid": "tconstruct:molten_lead"
+        },
+        "temperature": 330,
+        "time": 43
+      }
+    }
+  ]
+}
