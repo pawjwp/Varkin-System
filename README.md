@@ -2,7 +2,7 @@
 
 ## About
 
-The Varkin System is an add-on mod for [Ad Astra](https://modrinth.com/mod/ad-astra), adding a new solar system with unique content. The mod is in very early stages at the moment, but the final version could include up to 6 unique planetary bodies.
+The Varkin System is an add-on mod for [Ad Astra](https://modrinth.com/mod/ad-astra), adding a new solar system with unique content. The mod is in very early stages at the moment, currently adding supplementary worldgen features while the main ones are in development. The final version will include 4-6 unique planetary bodies.
 
 1. Icarus, a volcano world
 2. Talos, a dust desert world
@@ -13,13 +13,14 @@ The Varkin System is an add-on mod for [Ad Astra](https://modrinth.com/mod/ad-as
 
 This mod was created for my modpack, [Desolate Planet](https://modrinth.com/modpack/desolate-planet/). In this modpack, the player spawns on a planet in the Varkin system and must work to escape it. If you are using this mod in other modpacks, the planets will only be accessible with a tier IV rocket by default and have a much simpler progression system.
 
-## Features
+## Completed Features
 
 - Lava-loggable crystals for ore collection
   - Configured features to generate clusters of these crystals
   - Detailed integration recipes for the Thermal Series and Tinker's Construct
   - Some simple integration recipes with Create, Mekanism, and EnderIO
 - A custom surface rule for generating striations of volcanic rock
+
 Most current features do not function on their own unless implemented via datapacks or via KubeJS. This list will be updated in more detail as more features are implemented.
 
 ## Suggestions
