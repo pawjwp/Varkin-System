@@ -53,5 +53,17 @@
   "item.varkin_system.electrum_crystal_shard": "Electrum Crystal Shard",
   "item.varkin_system.electrum_dust": "Electrum Dust",
 
+  "solar_system.desolate_planet.varkin_system": "Varkin System",
+  "planet.desolate_planet.talos": "Talos",
+  "planet.desolate_planet.talos_orbit": "Talos Orbit",
+  "planet.desolate_planet.perdix": "Perdix",
+  "planet.desolate_planet.perdix_orbit": "Perdix Orbit",
+  "planet.desolate_planet.icarus": "Icarus",
+  "planet.desolate_planet.icarus_orbit": "Icarus Orbit",
+  "planet.desolate_planet.iapyx": "Iapyx",
+  "planet.desolate_planet.iapyx_orbit": "Iapyx Orbit",
+  "planet.desolate_planet.ariad": "Ariad",
+  "planet.desolate_planet.ariad_orbit": "Ariad Orbit",
+
   "creativetab.varkin_system_tab": "Varkin System Items"
 }
