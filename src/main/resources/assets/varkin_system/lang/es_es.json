@@ -1,0 +1,18 @@
+{
+  "block.varkin_system.white_plasteel_block": "Bloque de plastohierro blanco",
+  "block.varkin_system.light_gray_plasteel_block": "Bloque de plastohierro gris claro",
+  "block.varkin_system.gray_plasteel_block": "Bloque de plastohierro gris",
+  "block.varkin_system.black_plasteel_block": "Bloque de plastohierro negro",
+  "block.varkin_system.brown_plasteel_block": "Bloque de plastohierro marrón",
+  "block.varkin_system.red_plasteel_block": "Bloque de plastohierro rojo",
+  "block.varkin_system.orange_plasteel_block": "Bloque de plastohierro naranja",
+  "block.varkin_system.yellow_plasteel_block": "Bloque de plastohierro amarillo",
+  "block.varkin_system.lime_plasteel_block": "Bloque de plastohierro verde lima",
+  "block.varkin_system.green_plasteel_block": "Bloque de plastohierro verde",
+  "block.varkin_system.cyan_plasteel_block": "Bloque de plastohierro cian",
+  "block.varkin_system.light_blue_plasteel_block": "Bloque de plastohierro azul claro",
+  "block.varkin_system.blue_plasteel_block": "Bloque de plastohierro azul",
+  "block.varkin_system.purple_plasteel_block": "Bloque de plastohierro morado",
+  "block.varkin_system.magenta_plasteel_block": "Bloque de plastohierro magenta",
+  "block.varkin_system.pink_plasteel_block": "Bloque de plastohierro rosa"
+}
