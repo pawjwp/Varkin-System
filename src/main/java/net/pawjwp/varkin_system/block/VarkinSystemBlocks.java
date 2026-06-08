@@ -1,6 +1,7 @@
 package net.pawjwp.varkin_system.block;
 
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -142,6 +143,28 @@ public class VarkinSystemBlocks {
     public static final CrystalSet STANNITE = registerCrystalSet("stannite", MapColor.COLOR_GRAY, 1.5F);
     public static final CrystalSet GALENA = registerCrystalSet("galena", MapColor.COLOR_GRAY, 1.5F);
     public static final CrystalSet ELECTRUM = registerCrystalSet("electrum", MapColor.SAND, 1.5F);
+
+    public static final List<RegistryObject<Block>> PLASTEEL_BLOCKS = new ArrayList<>();
+
+    private static void registerPlasteel(DyeColor color) {
+        String name = color.getName() + "_plasteel_block";
+        RegistryObject<Block> block = BLOCKS.register(name,
+                () -> new Block(BlockBehaviour.Properties.of()
+                        .mapColor(color.getMapColor())
+                        .sound(SoundType.METAL)
+                        .strength(1.8F, 6.0F)
+                        .requiresCorrectToolForDrops()));
+        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
+                () -> new BlockItem(block.get(), new Item.Properties()));
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
+        PLASTEEL_BLOCKS.add(block);
+    }
+
+    static {
+        for (DyeColor color : DyeColor.values()) {
+            registerPlasteel(color);
+        }
+    }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

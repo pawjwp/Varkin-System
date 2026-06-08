@@ -38,6 +38,10 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
             // Storage block drops self
             this.dropSelf(set.storageBlock().get());
         }
+
+        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
+            this.dropSelf(block.get());
+        }
     }
 
     private LootTable.Builder createCrystalClusterDrops(Block cluster, Item shard) {

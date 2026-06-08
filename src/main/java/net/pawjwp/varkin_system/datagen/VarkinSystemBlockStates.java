@@ -47,6 +47,11 @@ public class VarkinSystemBlockStates extends BlockStateProvider {
                     models().cubeAll(set.name() + "_crystal_block",
                             resourceBlock(set.name() + "_crystal_block")));
         }
+
+        for (var block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
+            String name = blockName(block.get());
+            simpleBlock(block.get(), models().cubeAll(name, resourceBlock(name)));
+        }
     }
 
     private void directionalCrystalBlock(Block block) {

@@ -4,7 +4,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.pawjwp.varkin_system.VarkinSystem;
@@ -46,6 +48,13 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             // forge:storage_blocks/CRYSTALNAME (block tag)
             this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name())))
                     .add(set.storageBlock().get());
+        }
+
+        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
+            pickaxeTag.add(block.get());
+            this.tag(VarkinSystemTags.PLASTEEL_BLOCK).add(block.get());
+            this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/plasteel"))).add(block.get());
+            this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("desolate_planet", "plasteel_block"))).add(block.get());
         }
 
         this.tag(VarkinSystemTags.BASE_STONE_ICARUS)
