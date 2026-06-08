@@ -146,6 +146,26 @@ public class VarkinSystemBlocks {
 
     public static final List<RegistryObject<Block>> PLASTEEL_BLOCKS = new ArrayList<>();
 
+    // Register plasteel blocks in aesthetic color order
+    private static final DyeColor[] PLASTEEL_COLORS = {
+            DyeColor.WHITE,
+            DyeColor.LIGHT_GRAY,
+            DyeColor.GRAY,
+            DyeColor.BLACK,
+            DyeColor.BROWN,
+            DyeColor.RED,
+            DyeColor.ORANGE,
+            DyeColor.YELLOW,
+            DyeColor.LIME,
+            DyeColor.GREEN,
+            DyeColor.CYAN,
+            DyeColor.LIGHT_BLUE,
+            DyeColor.BLUE,
+            DyeColor.PURPLE,
+            DyeColor.MAGENTA,
+            DyeColor.PINK
+    };
+
     private static void registerPlasteel(DyeColor color) {
         String name = color.getName() + "_plasteel_block";
         RegistryObject<Block> block = BLOCKS.register(name,
@@ -161,7 +181,7 @@ public class VarkinSystemBlocks {
     }
 
     static {
-        for (DyeColor color : DyeColor.values()) {
+        for (DyeColor color : PLASTEEL_COLORS) {
             registerPlasteel(color);
         }
     }
