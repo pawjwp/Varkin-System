@@ -4,6 +4,8 @@
   "package": "net.pawjwp.varkin_system.mixin",
   "refmap": "mixins.varkin_system.refmap.json",
   "mixins": [
+    "BlockStateParserMixin",
+    "NbtUtilsMixin",
     "SurfaceRulesContextAccessor",
     "SurfaceSystemAccessor"
   ],

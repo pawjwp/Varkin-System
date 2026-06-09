@@ -1,0 +1,49 @@
+package net.pawjwp.varkin_system;
+
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.MissingMappingsEvent;
+
+import java.util.Map;
+
+// Remaps blocks and items from their old IDs to new ones
+@Mod.EventBusSubscriber(modid = VarkinSystem.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class VarkinSystemRemapping {
+
+    // old_namespace:old_id, new_namespace:new_id
+    private static final Map<String, String> REMAPS = Map.of(
+            "kubejs:light_plasteel_block", "varkin_system:white_plasteel_block",
+            "kubejs:dark_plasteel_block", "varkin_system:black_plasteel_block"
+    );
+
+    // returns the remapped ID from the old ID
+    public static ResourceLocation remap(ResourceLocation oldId) {
+        String to = REMAPS.get(oldId.toString());
+        return to == null ? null : ResourceLocation.parse(to);
+    }
+
+    @SubscribeEvent
+    public static void onMissingMappings(MissingMappingsEvent event) {
+        remap(event, Registries.BLOCK, ForgeRegistries.BLOCKS);
+        remap(event, Registries.ITEM, ForgeRegistries.ITEMS);
+    }
+
+    private static <T> void remap(MissingMappingsEvent event, ResourceKey<? extends Registry<T>> registry,
+                                  IForgeRegistry<T> forgeRegistry) {
+        REMAPS.forEach((from, to) -> {
+            ResourceLocation oldId = ResourceLocation.parse(from);
+            ResourceLocation newId = ResourceLocation.parse(to);
+            for (MissingMappingsEvent.Mapping<T> mapping : event.getMappings(registry, oldId.getNamespace())) {
+                if (mapping.getKey().equals(oldId)) {
+                    mapping.remap(forgeRegistry.getValue(newId));
+                }
+            }
+        });
+    }
+}
