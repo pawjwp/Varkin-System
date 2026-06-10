@@ -42,6 +42,11 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
         for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             this.dropSelf(block.get());
         }
+
+        // Sliding doors drop themselves from their lower half
+        for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
+            this.add(door.get(), this.createDoorTable(door.get()));
+        }
     }
 
     private LootTable.Builder createCrystalClusterDrops(Block cluster, Item shard) {

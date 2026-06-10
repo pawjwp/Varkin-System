@@ -4,9 +4,11 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.BuddingCrystalBlock;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
@@ -42,6 +44,16 @@ public class VarkinSystemItemModels extends ItemModelProvider {
         }
         takeAll(items, crystalStageItems::contains)
                 .forEach(item -> itemGeneratedModel(item, resourceBlock(itemName(item))));
+
+        // Sliding doors use flat item model
+        Set<Item> doorItems = new HashSet<>();
+        for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
+            doorItems.add(door.get().asItem());
+        }
+        if (!doorItems.isEmpty()) {
+            takeAll(items, doorItems::contains)
+                    .forEach(item -> itemGeneratedModel(item, resourceItem(itemName(item))));
+        }
 
         // Blocks whose items look alike
         takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
