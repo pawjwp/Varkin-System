@@ -1,12 +1,15 @@
 package net.pawjwp.varkin_system;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -87,6 +90,15 @@ public class VarkinSystem
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             VarkinSystemSolarSystemRenderer.register();
+        }
+
+        @SubscribeEvent
+        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event)
+        {
+            // If Create and Ad Astra are present, reuse Create's sliding door renderer for our doors.
+            if (ModList.get().isLoaded("create") && ModList.get().isLoaded("ad_astra")) {
+                event.registerBlockEntityRenderer(VarkinSystemBlocks.SLIDING_DOOR_BE.get(), SlidingDoorRenderer::new);
+            }
         }
     }
 }

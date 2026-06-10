@@ -1,14 +1,18 @@
 package net.pawjwp.varkin_system.block;
 
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -24,6 +28,8 @@ public class VarkinSystemBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, VarkinSystem.MOD_ID);
     public static final DeferredRegister<Item> BLOCK_ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, VarkinSystem.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
+            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, VarkinSystem.MOD_ID);
 
     public static final List<CrystalSet> CRYSTAL_SETS = new ArrayList<>();
 
@@ -186,8 +192,42 @@ public class VarkinSystemBlocks {
         }
     }
 
+    // Create-style sliding doors
+    public static final List<RegistryObject<Block>> SLIDING_DOORS = new ArrayList<>();
+    public static RegistryObject<BlockEntityType<SlidingDoorBlockEntity>> SLIDING_DOOR_BE;
+
+    // Properties mirror Ad Astra's sliding doors: iron door behaviour with per-material blast resistance and colour.
+    private static void registerSlidingDoor(String name, float explosionResistance, MapColor color) {
+        RegistryObject<Block> door = BLOCKS.register(name,
+                () -> new SlidingDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_DOOR)
+                        .explosionResistance(explosionResistance)
+                        .mapColor(color),
+                        com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock.TRAIN_SET_TYPE.get(), false));
+        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
+                () -> new BlockItem(door.get(), new Item.Properties()));
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
+        SLIDING_DOORS.add(door);
+    }
+
+    static {
+        if (ModList.get().isLoaded("create") && ModList.get().isLoaded("ad_astra")) {
+            registerSlidingDoor("iron_sliding_door", 6, MapColor.METAL);
+            registerSlidingDoor("steel_sliding_door", 12, MapColor.COLOR_GRAY);
+            registerSlidingDoor("desh_sliding_door", 9, MapColor.COLOR_ORANGE);
+            registerSlidingDoor("ostrum_sliding_door", 16, MapColor.COLOR_PURPLE);
+            registerSlidingDoor("calorite_sliding_door", 22, MapColor.COLOR_RED);
+
+            SLIDING_DOOR_BE = BLOCK_ENTITIES.register("sliding_door",
+                    () -> BlockEntityType.Builder.of(
+                            (pos, state) -> new SlidingDoorBlockEntity(SLIDING_DOOR_BE.get(), pos, state),
+                            SLIDING_DOORS.stream().map(RegistryObject::get).toArray(Block[]::new)
+                    ).build(null));
+        }
+    }
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
         BLOCK_ITEMS.register(eventBus);
+        BLOCK_ENTITIES.register(eventBus);
     }
 }
