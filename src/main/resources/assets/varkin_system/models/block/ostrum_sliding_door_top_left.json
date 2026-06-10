@@ -1,0 +1,6 @@
+{
+	"parent": "varkin_system:block/sliding_door_top_left",
+	"textures": {
+		"0": "varkin_system:block/ostrum_sliding_door"
+	}
+}
