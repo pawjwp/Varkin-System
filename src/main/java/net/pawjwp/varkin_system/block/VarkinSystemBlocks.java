@@ -194,6 +194,33 @@ public class VarkinSystemBlocks {
         }
     }
 
+    // Create seat-based ship chairs for each dye color
+    public static final List<RegistryObject<Block>> SHIP_CHAIRS = new ArrayList<>();
+    public static final Map<DyeColor, RegistryObject<Block>> SHIP_CHAIRS_BY_COLOR = new EnumMap<>(DyeColor.class);
+
+    private static void registerShipChair(DyeColor color) {
+        String name = color.getName() + "_ship_chair";
+        RegistryObject<Block> chair = BLOCKS.register(name,
+                () -> new ShipChairBlock(BlockBehaviour.Properties.of()
+                        .mapColor(color.getMapColor())
+                        .sound(SoundType.METAL)
+                        .strength(1.8F, 6.0F)
+                        .requiresCorrectToolForDrops(), color));
+        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
+                () -> new BlockItem(chair.get(), new Item.Properties()));
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
+        SHIP_CHAIRS.add(chair);
+        SHIP_CHAIRS_BY_COLOR.put(color, chair);
+    }
+
+    static {
+        if (ModList.get().isLoaded("create")) {
+            for (DyeColor color : ORDERED_DYE_COLORS) {
+                registerShipChair(color);
+            }
+        }
+    }
+
     // Create-style sliding doors
     public static final List<RegistryObject<Block>> SLIDING_DOORS = new ArrayList<>();
     public static RegistryObject<BlockEntityType<SlidingDoorBlockEntity>> SLIDING_DOOR_BE;
@@ -224,33 +251,6 @@ public class VarkinSystemBlocks {
                             (pos, state) -> new SlidingDoorBlockEntity(SLIDING_DOOR_BE.get(), pos, state),
                             SLIDING_DOORS.stream().map(RegistryObject::get).toArray(Block[]::new)
                     ).build(null));
-        }
-    }
-
-    // Create seat-based ship chairs for each dye color
-    public static final List<RegistryObject<Block>> SHIP_CHAIRS = new ArrayList<>();
-    public static final Map<DyeColor, RegistryObject<Block>> SHIP_CHAIRS_BY_COLOR = new EnumMap<>(DyeColor.class);
-
-    private static void registerShipChair(DyeColor color) {
-        String name = color.getName() + "_ship_chair";
-        RegistryObject<Block> chair = BLOCKS.register(name,
-                () -> new ShipChairBlock(BlockBehaviour.Properties.of()
-                        .mapColor(color.getMapColor())
-                        .sound(SoundType.METAL)
-                        .strength(1.8F, 6.0F)
-                        .requiresCorrectToolForDrops(), color));
-        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
-                () -> new BlockItem(chair.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
-        SHIP_CHAIRS.add(chair);
-        SHIP_CHAIRS_BY_COLOR.put(color, chair);
-    }
-
-    static {
-        if (ModList.get().isLoaded("create")) {
-            for (DyeColor color : ORDERED_DYE_COLORS) {
-                registerShipChair(color);
-            }
         }
     }
 
