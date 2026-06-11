@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "varkin_system:lime_ship_chair"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "varkin_system:blocks/lime_ship_chair"
+}

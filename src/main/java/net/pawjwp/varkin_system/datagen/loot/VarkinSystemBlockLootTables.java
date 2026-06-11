@@ -47,6 +47,11 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
         for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
             this.add(door.get(), this.createDoorTable(door.get()));
         }
+
+        // Ship chairs drop themselves
+        for (RegistryObject<Block> chair : VarkinSystemBlocks.SHIP_CHAIRS) {
+            this.dropSelf(chair.get());
+        }
     }
 
     private LootTable.Builder createCrystalClusterDrops(Block cluster, Item shard) {

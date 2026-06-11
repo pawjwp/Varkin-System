@@ -4,6 +4,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -12,6 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.LavaLoggableBlock;
 import net.pawjwp.varkin_system.block.LavaLoggableCrystal;
+import net.pawjwp.varkin_system.block.ShipChairBlock;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
 
@@ -52,6 +54,25 @@ public class VarkinSystemBlockStates extends BlockStateProvider {
             String name = blockName(block.get());
             simpleBlock(block.get(), models().cubeAll(name, resourceBlock(name)));
         }
+
+        // Ship chairs: hand-authored model per colour, authored facing south (no rotation),
+        // so the rotations match the chair's VoxelShape (south=0, west=90, north=180, east=270).
+        for (var chair : VarkinSystemBlocks.SHIP_CHAIRS) {
+            ModelFile model = models().getExistingFile(resourceBlock("ship_chair/" + chairColor(chair.get())));
+            getVariantBuilder(chair.get()).forAllStatesExcept(state -> {
+                int rot = switch (state.getValue(ShipChairBlock.FACING)) {
+                    case WEST -> 90;
+                    case NORTH -> 180;
+                    case EAST -> 270;
+                    default -> 0; // SOUTH
+                };
+                return ConfiguredModel.builder().modelFile(model).rotationY(rot).build();
+            }, BlockStateProperties.WATERLOGGED);
+        }
+    }
+
+    private String chairColor(Block chair) {
+        return blockName(chair).replace("_ship_chair", "");
     }
 
     private void directionalCrystalBlock(Block block) {

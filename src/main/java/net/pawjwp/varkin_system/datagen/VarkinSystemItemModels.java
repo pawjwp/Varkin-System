@@ -55,6 +55,18 @@ public class VarkinSystemItemModels extends ItemModelProvider {
                     .forEach(item -> itemGeneratedModel(item, resourceItem(itemName(item))));
         }
 
+        // Ship chairs parent their (3D) block model
+        Set<Item> chairItems = new HashSet<>();
+        for (RegistryObject<Block> chair : VarkinSystemBlocks.SHIP_CHAIRS) {
+            chairItems.add(chair.get().asItem());
+        }
+        if (!chairItems.isEmpty()) {
+            takeAll(items, chairItems::contains).forEach(item -> {
+                String color = itemName(item).replace("_ship_chair", "");
+                withExistingParent(itemName(item), resourceBlock("ship_chair/" + color));
+            });
+        }
+
         // Blocks whose items look alike
         takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
 
