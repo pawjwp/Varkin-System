@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "tag": "varkin_system:plasteel_block"
+    }
+  ],
+  "result": {
+    "item": "varkin_system:cyan_plasteel_block"
+  }
+}

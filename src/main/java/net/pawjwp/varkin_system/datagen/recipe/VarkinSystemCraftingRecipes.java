@@ -169,5 +169,18 @@ public class VarkinSystemCraftingRecipes {
                     })
                     .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name + "_from_dye"));
         }
+
+        // Recolour any plasteel block with a dye
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName() + "_plasteel_block";
+            Item plasteelBlock = ForgeRegistries.ITEMS.getValue(
+                    ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, plasteelBlock)
+                    .requires(DyeItem.byColor(color))
+                    .requires(VarkinSystemTags.PLASTEEL_BLOCKS)
+                    .unlockedBy("has_plasteel_block", InventoryChangeTrigger.TriggerInstance.hasItems(
+                            DyeItem.byColor(color)))
+                    .save(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name + "_from_dye"));
+        }
     }
 }

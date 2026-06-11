@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:purple_dye"
+    },
+    {
+      "tag": "varkin_system:plasteel_block"
+    }
+  ],
+  "result": {
+    "item": "varkin_system:purple_plasteel_block"
+  }
+}
