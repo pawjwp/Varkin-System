@@ -25,4 +25,6 @@ public class VarkinSystemTags {
     // Item tags
     public static final TagKey<Item> CRYSTAL_SHARDS =
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "crystal_shards"));
+    public static final TagKey<Item> SHIP_CHAIRS =
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "ship_chairs"));
 }

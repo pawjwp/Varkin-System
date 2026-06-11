@@ -50,6 +50,10 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
                     .add(set.storageBlock().get());
         }
 
+        for (RegistryObject<Block> chair : VarkinSystemBlocks.SHIP_CHAIRS) {
+            pickaxeTag.add(chair.get());
+        }
+
         for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             pickaxeTag.add(block.get());
             this.tag(VarkinSystemTags.PLASTEEL_BLOCK).add(block.get());
