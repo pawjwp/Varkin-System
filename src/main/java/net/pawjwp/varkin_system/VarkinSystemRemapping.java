@@ -17,9 +17,26 @@ import java.util.Map;
 public class VarkinSystemRemapping {
 
     // old_namespace:old_id, new_namespace:new_id
-    private static final Map<String, String> REMAPS = Map.of(
-            "kubejs:light_plasteel_block", "varkin_system:white_plasteel_block",
-            "kubejs:dark_plasteel_block", "varkin_system:black_plasteel_block"
+    private static final Map<String, String> REMAPS = Map.ofEntries(
+            Map.entry("kubejs:light_plasteel_block", "varkin_system:white_plasteel_block"),
+            Map.entry("kubejs:dark_plasteel_block", "varkin_system:black_plasteel_block"),
+
+            Map.entry("kubejs:white_ship_chair", "varkin_system:white_ship_chair"),
+            Map.entry("kubejs:light_gray_ship_chair", "varkin_system:light_gray_ship_chair"),
+            Map.entry("kubejs:gray_ship_chair", "varkin_system:gray_ship_chair"),
+            Map.entry("kubejs:black_ship_chair", "varkin_system:black_ship_chair"),
+            Map.entry("kubejs:brown_ship_chair", "varkin_system:brown_ship_chair"),
+            Map.entry("kubejs:red_ship_chair", "varkin_system:red_ship_chair"),
+            Map.entry("kubejs:orange_ship_chair", "varkin_system:orange_ship_chair"),
+            Map.entry("kubejs:yellow_ship_chair", "varkin_system:yellow_ship_chair"),
+            Map.entry("kubejs:lime_ship_chair", "varkin_system:lime_ship_chair"),
+            Map.entry("kubejs:green_ship_chair", "varkin_system:green_ship_chair"),
+            Map.entry("kubejs:cyan_ship_chair", "varkin_system:cyan_ship_chair"),
+            Map.entry("kubejs:light_blue_ship_chair", "varkin_system:light_blue_ship_chair"),
+            Map.entry("kubejs:blue_ship_chair", "varkin_system:blue_ship_chair"),
+            Map.entry("kubejs:purple_ship_chair", "varkin_system:purple_ship_chair"),
+            Map.entry("kubejs:magenta_ship_chair", "varkin_system:magenta_ship_chair"),
+            Map.entry("kubejs:pink_ship_chair", "varkin_system:pink_ship_chair")
     );
 
     // returns the remapped ID from the old ID
