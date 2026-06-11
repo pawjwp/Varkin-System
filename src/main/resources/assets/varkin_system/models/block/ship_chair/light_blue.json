@@ -1,0 +1,6 @@
+{
+  "parent": "varkin_system:block/ship_chair/white",
+  "textures": {
+	"2": "varkin_system:block/ship_chair/light_blue"
+  }
+}
