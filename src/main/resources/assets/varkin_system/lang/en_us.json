@@ -1,4 +1,10 @@
 {
+  "block.varkin_system.iron_sliding_door": "Iron Sliding Door",
+  "block.varkin_system.steel_sliding_door": "Steel Sliding Door",
+  "block.varkin_system.desh_sliding_door": "Desh Sliding Door",
+  "block.varkin_system.ostrum_sliding_door": "Ostrum Sliding Door",
+  "block.varkin_system.calorite_sliding_door": "Calorite Sliding Door",
+
   "block.varkin_system.white_plasteel_block": "White Plasteel Block",
   "block.varkin_system.light_gray_plasteel_block": "Light Gray Plasteel Block",
   "block.varkin_system.gray_plasteel_block": "Gray Plasteel Block",
