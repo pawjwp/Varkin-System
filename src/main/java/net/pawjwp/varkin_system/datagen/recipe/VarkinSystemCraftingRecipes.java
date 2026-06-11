@@ -6,13 +6,18 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.tag.VarkinSystemTags;
 
 import java.util.function.Consumer;
 
@@ -120,5 +125,49 @@ public class VarkinSystemCraftingRecipes {
                             .save(c);
                 })
                 .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "calorite_sliding_door"));
+
+        // Ship chairs (require Create)
+        var whitePlasteel = ForgeRegistries.ITEMS.getValue(
+                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "white_plasteel_block"));
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName() + "_ship_chair";
+
+            // 4 white plasteel + 2 wool (or the matching Create seat)
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("create"))
+                    .addRecipe(c -> {
+                        Item chair = ForgeRegistries.ITEMS.getValue(
+                                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
+                        Item wool = ForgeRegistries.ITEMS.getValue(
+                                ResourceLocation.fromNamespaceAndPath("minecraft", color.getName() + "_wool"));
+                        Item seat = ForgeRegistries.ITEMS.getValue(
+                                ResourceLocation.fromNamespaceAndPath("create", color.getName() + "_seat"));
+                        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, chair)
+                                .pattern("W  ")
+                                .pattern("PWP")
+                                .pattern("PP ")
+                                .define('W', Ingredient.of(wool, seat))
+                                .define('P', whitePlasteel)
+                                .unlockedBy("has_white_plasteel_block",
+                                        InventoryChangeTrigger.TriggerInstance.hasItems(whitePlasteel))
+                                .save(c);
+                    })
+                    .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
+
+            // Recolour any ship chair with a dye
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("create"))
+                    .addRecipe(c -> {
+                        Item chair = ForgeRegistries.ITEMS.getValue(
+                                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
+                        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, chair)
+                                .requires(DyeItem.byColor(color))
+                                .requires(VarkinSystemTags.SHIP_CHAIRS)
+                                .unlockedBy("has_ship_chair", InventoryChangeTrigger.TriggerInstance.hasItems(
+                                        DyeItem.byColor(color)))
+                                .save(c);
+                    })
+                    .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name + "_from_dye"));
+        }
     }
 }

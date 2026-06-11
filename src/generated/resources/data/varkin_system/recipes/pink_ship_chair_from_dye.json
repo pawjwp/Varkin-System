@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "create"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "minecraft:pink_dye"
+          },
+          {
+            "tag": "varkin_system:ship_chairs"
+          }
+        ],
+        "result": {
+          "item": "varkin_system:pink_ship_chair"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "create"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "P": {
+            "item": "varkin_system:white_plasteel_block"
+          },
+          "W": [
+            {
+              "item": "minecraft:white_wool"
+            },
+            {
+              "item": "create:white_seat"
+            }
+          ]
+        },
+        "pattern": [
+          "W  ",
+          "PWP",
+          "PP "
+        ],
+        "result": {
+          "item": "varkin_system:white_ship_chair"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}
