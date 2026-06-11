@@ -12,11 +12,7 @@ import net.minecraft.world.level.material.PushReaction;
 import java.util.List;
 import java.util.function.Supplier;
 
-/**
- * A budding block that grows LavaLoggableCrystal stages on its faces via random ticks.
- * Growth stages are provided as an ordered list of block suppliers. On a random tick,
- * the block picks a random direction and attempts to advance the crystal on that face
- */
+// A budding crystal block that grows LavaLoggableCrystals on random ticks.
 public class BuddingCrystalBlock extends Block {
 
     private static final Direction[] DIRECTIONS = Direction.values();
@@ -60,10 +56,7 @@ public class BuddingCrystalBlock extends Block {
         level.setBlockAndUpdate(targetPos, newState);
     }
 
-    /**
-     * Determines the next growth stage for the block at the target position.
-     * Returns null if no growth should occur.
-     */
+    // Determines the next growth stage for the block at the target position.
     private Block getNextStage(BlockState targetState, Direction direction) {
         // Place the first stage if empty adjacent block
         if (canClusterGrowAtState(targetState)) {
@@ -81,10 +74,8 @@ public class BuddingCrystalBlock extends Block {
         return null;
     }
 
-    /**
-     * Whether a crystal can grow into this position.
-     * Allows air, water source blocks, and lava source blocks.
-     */
+    // Whether a crystal can grow into this position.
+    // Allows air, water source blocks, and lava source blocks.
     public static boolean canClusterGrowAtState(BlockState state) {
         return state.isAir()
                 || (state.is(Blocks.WATER) && state.getFluidState().getAmount() == 8)

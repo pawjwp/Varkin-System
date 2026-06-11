@@ -22,10 +22,8 @@ import net.minecraft.world.level.material.Fluids;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-/**
- * A block that supports both waterlogging and lava-logging via a custom property.
- * liquid_logged values: 0 = none, 1 = water, 2 = lava
- */
+// A block that supports both waterlogging and lava-logging via a custom property.
+// liquid_logged can be: 0 = none, 1 = water, 2 = lava
 public class LavaLoggableBlock extends Block implements BucketPickup, LiquidBlockContainer {
 
     public static final IntegerProperty LIQUID_LOGGED = IntegerProperty.create("liquid_logged", 0, 2);

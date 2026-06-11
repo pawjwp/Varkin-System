@@ -22,11 +22,8 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A directional crystal-like block that attaches to a surface and breaks when support is removed.
- * Extends LavaLoggableBlock for water/lava logging support.
- * Used by KubeJS via createCustom — this class is not registered directly by the mod.
- */
+
+// A lava-loggable crystal block that attaches to a surface.
 public class LavaLoggableCrystal extends LavaLoggableBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
