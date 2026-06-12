@@ -54,6 +54,12 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             pickaxeTag.add(chair.get());
         }
 
+        // Stop Quark from interfering with double door opening
+        var nonDoubleDoorTag = this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("quark", "non_double_door")));
+        for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
+            nonDoubleDoorTag.add(door.get());
+        }
+
         for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             pickaxeTag.add(block.get());
             this.tag(VarkinSystemTags.PLASTEEL_BLOCK).add(block.get());
