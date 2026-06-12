@@ -43,6 +43,14 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
             this.dropSelf(block.get());
         }
 
+        // Slabs drop two when double, stairs drop themselves
+        for (RegistryObject<Block> slab : VarkinSystemBlocks.PLASTEEL_SLABS) {
+            this.add(slab.get(), this.createSlabItemTable(slab.get()));
+        }
+        for (RegistryObject<Block> stairs : VarkinSystemBlocks.PLASTEEL_STAIRS) {
+            this.dropSelf(stairs.get());
+        }
+
         // Sliding doors drop themselves from their lower half
         for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
             this.add(door.get(), this.createDoorTable(door.get()));
