@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -153,6 +154,7 @@ public class VarkinSystemBlocks {
     public static final CrystalSet ELECTRUM = registerCrystalSet("electrum", MapColor.SAND, 1.5F);
 
     public static final List<RegistryObject<Block>> PLASTEEL_BLOCKS = new ArrayList<>();
+    public static final Map<DyeColor, RegistryObject<Block>> PLASTEEL_BLOCKS_BY_COLOR = new EnumMap<>(DyeColor.class);
 
     // Register plasteel blocks in aesthetic color order
     private static final DyeColor[] ORDERED_DYE_COLORS = {
@@ -174,23 +176,57 @@ public class VarkinSystemBlocks {
             DyeColor.PINK
     };
 
+    private static BlockBehaviour.Properties plasteelProperties(DyeColor color) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(color.getMapColor())
+                .sound(SoundType.METAL)
+                .strength(1.8F, 6.0F)
+                .requiresCorrectToolForDrops();
+    }
+
     private static void registerPlasteel(DyeColor color) {
         String name = color.getName() + "_plasteel_block";
         RegistryObject<Block> block = BLOCKS.register(name,
-                () -> new Block(BlockBehaviour.Properties.of()
-                        .mapColor(color.getMapColor())
-                        .sound(SoundType.METAL)
-                        .strength(1.8F, 6.0F)
-                        .requiresCorrectToolForDrops()));
+                () -> new Block(plasteelProperties(color)));
         RegistryObject<Item> item = BLOCK_ITEMS.register(name,
                 () -> new BlockItem(block.get(), new Item.Properties()));
         VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
         PLASTEEL_BLOCKS.add(block);
+        PLASTEEL_BLOCKS_BY_COLOR.put(color, block);
     }
 
     static {
         for (DyeColor color : ORDERED_DYE_COLORS) {
             registerPlasteel(color);
+        }
+    }
+
+    // Plasteel slabs and stairs
+    public static final List<RegistryObject<Block>> PLASTEEL_SLABS = new ArrayList<>();
+    public static final List<RegistryObject<Block>> PLASTEEL_STAIRS = new ArrayList<>();
+
+    private static void registerPlasteelSlabAndStairs(DyeColor color) {
+        String base = color.getName() + "_plasteel";
+        RegistryObject<Block> plasteel = PLASTEEL_BLOCKS_BY_COLOR.get(color);
+
+        RegistryObject<Block> slab = BLOCKS.register(base + "_slab",
+                () -> new VerticalSlabBlock(plasteelProperties(color)));
+        RegistryObject<Block> stairs = BLOCKS.register(base + "_stairs",
+                () -> new StairBlock(() -> plasteel.get().defaultBlockState(), plasteelProperties(color)));
+
+        RegistryObject<Item> slabItem = BLOCK_ITEMS.register(base + "_slab",
+                () -> new BlockItem(slab.get(), new Item.Properties()));
+        RegistryObject<Item> stairsItem = BLOCK_ITEMS.register(base + "_stairs",
+                () -> new BlockItem(stairs.get(), new Item.Properties()));
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(slabItem);
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(stairsItem);
+        PLASTEEL_SLABS.add(slab);
+        PLASTEEL_STAIRS.add(stairs);
+    }
+
+    static {
+        for (DyeColor color : ORDERED_DYE_COLORS) {
+            registerPlasteelSlabAndStairs(color);
         }
     }
 
