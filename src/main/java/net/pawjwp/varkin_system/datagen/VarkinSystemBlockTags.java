@@ -67,6 +67,18 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("desolate_planet", "plasteel_block"))).add(block.get());
         }
 
+        var slabsTag = this.tag(BlockTags.SLABS);
+        for (RegistryObject<Block> slab : VarkinSystemBlocks.PLASTEEL_SLABS) {
+            pickaxeTag.add(slab.get());
+            slabsTag.add(slab.get());
+        }
+
+        var stairsTag = this.tag(BlockTags.STAIRS);
+        for (RegistryObject<Block> stairs : VarkinSystemBlocks.PLASTEEL_STAIRS) {
+            pickaxeTag.add(stairs.get());
+            stairsTag.add(stairs.get());
+        }
+
         this.tag(VarkinSystemTags.BASE_STONE_ICARUS)
                 .add(
                         Blocks.NETHERRACK,

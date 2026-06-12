@@ -36,6 +36,20 @@ public class VarkinSystemItemTags extends ItemTagsProvider {
             plasteelBlocksTag.add(block.get().asItem());
         }
 
+        var slabsTag = this.tag(ItemTags.SLABS);
+        var plasteelSlabsTag = this.tag(VarkinSystemTags.PLASTEEL_SLABS);
+        for (var slab : VarkinSystemBlocks.PLASTEEL_SLABS) {
+            slabsTag.add(slab.get().asItem());
+            plasteelSlabsTag.add(slab.get().asItem());
+        }
+
+        var stairsTag = this.tag(ItemTags.STAIRS);
+        var plasteelStairsTag = this.tag(VarkinSystemTags.PLASTEEL_STAIRS);
+        for (var stairs : VarkinSystemBlocks.PLASTEEL_STAIRS) {
+            stairsTag.add(stairs.get().asItem());
+            plasteelStairsTag.add(stairs.get().asItem());
+        }
+
         for (CrystalSet set : VarkinSystemBlocks.CRYSTAL_SETS) {
             crystalShardsTag.add(set.shard().get());
 

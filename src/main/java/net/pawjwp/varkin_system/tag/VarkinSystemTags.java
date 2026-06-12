@@ -29,4 +29,8 @@ public class VarkinSystemTags {
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "ship_chairs"));
     public static final TagKey<Item> PLASTEEL_BLOCKS =
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_block"));
+    public static final TagKey<Item> PLASTEEL_SLABS =
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_slabs"));
+    public static final TagKey<Item> PLASTEEL_STAIRS =
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_stairs"));
 }
