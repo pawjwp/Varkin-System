@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "varkin_system:pink_plasteel_block"
+  },
+  "result": "varkin_system:pink_plasteel_slab"
+}

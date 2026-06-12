@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "varkin_system:light_blue_plasteel_block"
+  },
+  "result": "varkin_system:light_blue_plasteel_slab"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "tag": "varkin_system:plasteel_slabs"
+    }
+  ],
+  "result": {
+    "item": "varkin_system:black_plasteel_slab"
+  }
+}

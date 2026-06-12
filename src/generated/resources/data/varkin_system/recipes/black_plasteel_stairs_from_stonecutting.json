@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "varkin_system:black_plasteel_block"
+  },
+  "result": "varkin_system:black_plasteel_stairs"
+}

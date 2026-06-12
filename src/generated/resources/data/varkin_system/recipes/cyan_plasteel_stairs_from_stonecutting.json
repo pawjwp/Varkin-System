@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "varkin_system:cyan_plasteel_block"
+  },
+  "result": "varkin_system:cyan_plasteel_stairs"
+}

@@ -5,6 +5,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -182,5 +183,57 @@ public class VarkinSystemCraftingRecipes {
                             DyeItem.byColor(color)))
                     .save(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name + "_from_dye"));
         }
+
+        // Plasteel slabs and stairs
+        for (DyeColor color : DyeColor.values()) {
+            Item block = item(color.getName() + "_plasteel_block");
+            Item slab = item(color.getName() + "_plasteel_slab");
+            Item stairs = item(color.getName() + "_plasteel_stairs");
+            var hasBlock = InventoryChangeTrigger.TriggerInstance.hasItems(block);
+
+            // slab recipe
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
+                    .pattern("###")
+                    .define('#', block)
+                    .unlockedBy("has_plasteel_block", hasBlock)
+                    .save(consumer);
+
+            // stair recipe
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
+                    .pattern("#  ")
+                    .pattern("## ")
+                    .pattern("###")
+                    .define('#', block)
+                    .unlockedBy("has_plasteel_block", hasBlock)
+                    .save(consumer);
+
+            // Stonecutting from full block
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, slab, 2)
+                    .unlockedBy("has_plasteel_block", hasBlock)
+                    .save(consumer, id(color.getName() + "_plasteel_slab_from_stonecutting"));
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
+                    .unlockedBy("has_plasteel_block", hasBlock)
+                    .save(consumer, id(color.getName() + "_plasteel_stairs_from_stonecutting"));
+
+            // Recolor any stair/slab
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, slab)
+                    .requires(DyeItem.byColor(color))
+                    .requires(VarkinSystemTags.PLASTEEL_SLABS)
+                    .unlockedBy("has_plasteel_slab", InventoryChangeTrigger.TriggerInstance.hasItems(DyeItem.byColor(color)))
+                    .save(consumer, id(color.getName() + "_plasteel_slab_from_dye"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, stairs)
+                    .requires(DyeItem.byColor(color))
+                    .requires(VarkinSystemTags.PLASTEEL_STAIRS)
+                    .unlockedBy("has_plasteel_stairs", InventoryChangeTrigger.TriggerInstance.hasItems(DyeItem.byColor(color)))
+                    .save(consumer, id(color.getName() + "_plasteel_stairs_from_dye"));
+        }
+    }
+
+    private static Item item(String path) {
+        return ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, path));
+    }
+
+    private static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, path);
     }
 }
