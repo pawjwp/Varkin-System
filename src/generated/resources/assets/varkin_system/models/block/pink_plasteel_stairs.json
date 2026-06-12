@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "varkin_system:block/pink_plasteel_block",
+    "side": "varkin_system:block/pink_plasteel_block",
+    "top": "varkin_system:block/pink_plasteel_block"
+  }
+}

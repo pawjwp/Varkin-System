@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "varkin_system:block/cyan_plasteel_block",
+    "side": "varkin_system:block/cyan_plasteel_block",
+    "top": "varkin_system:block/cyan_plasteel_block"
+  }
+}

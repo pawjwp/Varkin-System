@@ -1,0 +1,43 @@
+{
+  "variants": {
+    "axis=x,type=bottom": {
+      "model": "varkin_system:block/lime_plasteel_slab",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,type=double": {
+      "model": "varkin_system:block/lime_plasteel_block"
+    },
+    "axis=x,type=top": {
+      "model": "varkin_system:block/lime_plasteel_slab",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    },
+    "axis=y,type=bottom": {
+      "model": "varkin_system:block/lime_plasteel_slab"
+    },
+    "axis=y,type=double": {
+      "model": "varkin_system:block/lime_plasteel_block"
+    },
+    "axis=y,type=top": {
+      "model": "varkin_system:block/lime_plasteel_slab",
+      "uvlock": true,
+      "x": 180
+    },
+    "axis=z,type=bottom": {
+      "model": "varkin_system:block/lime_plasteel_slab",
+      "uvlock": true,
+      "x": 270
+    },
+    "axis=z,type=double": {
+      "model": "varkin_system:block/lime_plasteel_block"
+    },
+    "axis=z,type=top": {
+      "model": "varkin_system:block/lime_plasteel_slab",
+      "uvlock": true,
+      "x": 90
+    }
+  }
+}

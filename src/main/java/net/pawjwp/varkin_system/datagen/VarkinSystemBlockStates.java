@@ -4,7 +4,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -16,6 +19,7 @@ import net.pawjwp.varkin_system.block.LavaLoggableCrystal;
 import net.pawjwp.varkin_system.block.ShipChairBlock;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.block.VerticalSlabBlock;
 
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
@@ -53,6 +57,39 @@ public class VarkinSystemBlockStates extends BlockStateProvider {
         for (var block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             String name = blockName(block.get());
             simpleBlock(block.get(), models().cubeAll(name, resourceBlock(name)));
+        }
+
+        for (var slab : VarkinSystemBlocks.PLASTEEL_SLABS) {
+            String name = blockName(slab.get());
+            ResourceLocation tex = resourceBlock(name.replace("_slab", "_block"));
+            ModelFile bottom = models().slab(name, tex, tex, tex);
+            ModelFile doubleSlab = models().getExistingFile(resourceBlock(name.replace("_slab", "_block")));
+            getVariantBuilder(slab.get()).forAllStatesExcept(state -> {
+                SlabType type = state.getValue(SlabBlock.TYPE);
+                if (type == SlabType.DOUBLE) {
+                    return ConfiguredModel.builder().modelFile(doubleSlab).build();
+                }
+                boolean top = type == SlabType.TOP;
+                int xRot = 0;
+                int yRot = 0;
+                switch (state.getValue(VerticalSlabBlock.AXIS)) {
+                    case Y -> xRot = top ? 180 : 0;
+                    case Z -> xRot = top ? 90 : 270;
+                    case X -> { xRot = 90; yRot = top ? 270 : 90; }
+                }
+                var builder = ConfiguredModel.builder()
+                        .modelFile(bottom).rotationX(xRot).rotationY(yRot);
+                if (xRot != 0 || yRot != 0) {
+                    builder.uvLock(true);
+                }
+                return builder.build();
+            }, SlabBlock.WATERLOGGED);
+        }
+
+        for (var stairs : VarkinSystemBlocks.PLASTEEL_STAIRS) {
+            String name = blockName(stairs.get());
+            ResourceLocation tex = resourceBlock(name.replace("_stairs", "_block"));
+            stairsBlock((StairBlock) stairs.get(), tex);
         }
 
         // Ship chairs: hand-authored model per colour, authored facing south (no rotation),

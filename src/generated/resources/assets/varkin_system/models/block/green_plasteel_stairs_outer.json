@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "varkin_system:block/green_plasteel_block",
+    "side": "varkin_system:block/green_plasteel_block",
+    "top": "varkin_system:block/green_plasteel_block"
+  }
+}
