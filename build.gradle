@@ -236,6 +236,12 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:mekanism-268560:6552911")
     compileOnly fg.deobf("curse.maven:mekanism-268560:6552911")
 
+    // Sophisticated Storage/Core
+    compileOnly fg.deobf("curse.maven:sophisticated-core-618298:8231035")
+    runtimeOnly fg.deobf("curse.maven:sophisticated-core-618298:8231035")
+    compileOnly fg.deobf("curse.maven:sophisticated-storage-619320:8224087")
+    runtimeOnly fg.deobf("curse.maven:sophisticated-storage-619320:8224087")
+
     // Mixins
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
