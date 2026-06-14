@@ -33,4 +33,8 @@ public class VarkinSystemTags {
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_slabs"));
     public static final TagKey<Item> PLASTEEL_STAIRS =
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_stairs"));
+    public static final TagKey<Item> PLASTEEL_BOOKSHELVES =
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_bookshelves"));
+    public static final TagKey<Item> PLASTEEL_CABINETS =
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_cabinets"));
 }
