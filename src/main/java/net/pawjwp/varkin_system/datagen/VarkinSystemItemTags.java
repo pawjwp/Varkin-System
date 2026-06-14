@@ -24,8 +24,6 @@ public class VarkinSystemItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        var crystalShardsTag = this.tag(VarkinSystemTags.CRYSTAL_SHARDS);
-
         var shipChairsTag = this.tag(VarkinSystemTags.SHIP_CHAIRS);
         for (var chair : VarkinSystemBlocks.SHIP_CHAIRS) {
             shipChairsTag.add(chair.get().asItem());
@@ -50,6 +48,7 @@ public class VarkinSystemItemTags extends ItemTagsProvider {
             plasteelStairsTag.add(stairs.get().asItem());
         }
 
+        var crystalShardsTag = this.tag(VarkinSystemTags.CRYSTAL_SHARDS);
         for (CrystalSet set : VarkinSystemBlocks.CRYSTAL_SETS) {
             crystalShardsTag.add(set.shard().get());
 

@@ -10,7 +10,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.pawjwp.varkin_system.VarkinSystem;
-import net.pawjwp.varkin_system.block.BuddingCrystalBlock;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
 
@@ -112,23 +111,6 @@ public class VarkinSystemItemModels extends ItemModelProvider {
 
     public ResourceLocation resourceItem(String path) {
         return ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "item/" + path);
-    }
-
-    @SafeVarargs
-    public static <T> Collection<T> takeAll(Set<? extends T> src, T... items) {
-        List<T> ret = Arrays.asList(items);
-
-        for(T item : items) {
-            if (!src.contains(item)) {
-                VarkinSystem.LOGGER.warn("Item {} not found in set", item);
-            }
-        }
-
-        if (!src.removeAll(ret)) {
-            VarkinSystem.LOGGER.warn("takeAll array didn't yield anything ({})", Arrays.toString(items));
-        }
-
-        return ret;
     }
 
     public static <T> Collection<T> takeAll(Set<T> src, Predicate<T> pred) {

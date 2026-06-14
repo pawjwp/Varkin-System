@@ -11,7 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.function.Supplier;
 
 public class VarkinSystemItems {
-    public static LinkedHashSet<RegistryObject<Item>> CREATIVE_TAB_ITEMS = new LinkedHashSet<>();;
+    public static LinkedHashSet<RegistryObject<Item>> CREATIVE_TAB_ITEMS = new LinkedHashSet<>();
 
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, VarkinSystem.MOD_ID);
