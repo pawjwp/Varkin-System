@@ -1,9 +1,12 @@
 package net.pawjwp.varkin_system;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.MissingMappingsEvent;
 
 import java.util.Map;
+import java.util.Optional;
 
 // Remaps blocks and items from their old IDs to new ones
 @Mod.EventBusSubscriber(modid = VarkinSystem.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -43,6 +47,19 @@ public class VarkinSystemRemapping {
     public static ResourceLocation remap(ResourceLocation oldId) {
         String to = REMAPS.get(oldId.toString());
         return to == null ? null : ResourceLocation.parse(to);
+    }
+
+    // Looks up a block, falls back to remapped ID when unknown
+    // Used by the NbtUtils and BlockStateParser mixins
+    public static Optional<Holder.Reference<Block>> getOrRemap(HolderGetter<Block> getter, ResourceKey<Block> key) {
+        Optional<Holder.Reference<Block>> result = getter.get(key);
+        if (result.isEmpty()) {
+            ResourceLocation remapped = remap(key.location());
+            if (remapped != null) {
+                return getter.get(ResourceKey.create(Registries.BLOCK, remapped));
+            }
+        }
+        return result;
     }
 
     @SubscribeEvent
