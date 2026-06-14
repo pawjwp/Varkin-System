@@ -5,6 +5,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -39,34 +40,20 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
             this.dropSelf(set.storageBlock().get());
         }
 
-        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
-            this.dropSelf(block.get());
-        }
-
-        // Slabs drop two when double, stairs drop themselves
-        for (RegistryObject<Block> slab : VarkinSystemBlocks.PLASTEEL_SLABS) {
-            this.add(slab.get(), this.createSlabItemTable(slab.get()));
-        }
-        for (RegistryObject<Block> stairs : VarkinSystemBlocks.PLASTEEL_STAIRS) {
-            this.dropSelf(stairs.get());
+        // Plasteel-derived blocks drop themselves
+        // Bookshelves and cabinets will already drop inventory on removal
+        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_DERIVED_BLOCKS) {
+            // Slabs which drop two when doubled.
+            if (block.get() instanceof SlabBlock) {
+                this.add(block.get(), this.createSlabItemTable(block.get()));
+            } else {
+                this.dropSelf(block.get());
+            }
         }
 
         // Sliding doors drop themselves from their lower half
         for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
             this.add(door.get(), this.createDoorTable(door.get()));
-        }
-
-        // Ship chairs drop themselves
-        for (RegistryObject<Block> chair : VarkinSystemBlocks.SHIP_CHAIRS) {
-            this.dropSelf(chair.get());
-        }
-
-        // Bookshelves and cabinets drop themselves (inventories also dropped on removal)
-        for (RegistryObject<Block> bookshelf : VarkinSystemBlocks.PLASTEEL_BOOKSHELVES) {
-            this.dropSelf(bookshelf.get());
-        }
-        for (RegistryObject<Block> cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
-            this.dropSelf(cabinet.get());
         }
     }
 
