@@ -61,21 +61,11 @@ public class VarkinSystemThermalRecipes implements DataProvider {
                 "compat/thermal/centrifuge/sphalerite_dust_with_create"));
 
         // Sphalerite WITHOUT Create
-        JsonArray sphaleriteNoCreateConditions = new JsonArray();
-        sphaleriteNoCreateConditions.add(modLoaded("thermal"));
-        JsonObject notCreate = new JsonObject();
-        notCreate.addProperty("type", "forge:not");
-        JsonObject createCondition = new JsonObject();
-        createCondition.addProperty("type", "forge:mod_loaded");
-        createCondition.addProperty("modid", "create");
-        notCreate.add("value", createCondition);
-        sphaleriteNoCreateConditions.add(notCreate);
-
-        futures.add(saveRecipe(cache, buildCentrifugeRecipeRaw("sphalerite", 2,
+        futures.add(saveRecipe(cache, buildCentrifugeRecipe("sphalerite", 2,
                 new ResultEntry[]{
                         result("thermal:iron_dust", 2, -1),
                         result("thermal:sulfur_dust", 2, -1)
-                }, 4000, sphaleriteNoCreateConditions),
+                }, 4000, modLoaded("thermal"), notModLoaded("create")),
                 "compat/thermal/centrifuge/sphalerite_dust_without_create"));
 
         futures.add(saveRecipe(cache, buildCentrifugeRecipe("pentlandite", 2,
@@ -206,6 +196,13 @@ public class VarkinSystemThermalRecipes implements DataProvider {
         JsonObject obj = new JsonObject();
         obj.addProperty("type", "forge:mod_loaded");
         obj.addProperty("modid", modid);
+        return obj;
+    }
+
+    private static JsonObject notModLoaded(String modid) {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("type", "forge:not");
+        obj.add("value", modLoaded(modid));
         return obj;
     }
 
