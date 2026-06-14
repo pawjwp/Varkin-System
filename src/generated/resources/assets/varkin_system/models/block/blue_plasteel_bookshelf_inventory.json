@@ -1,0 +1,7 @@
+{
+  "parent": "varkin_system:block/template_plasteel_bookshelf_inventory",
+  "textures": {
+    "front": "varkin_system:block/blue_plasteel_bookshelf_empty",
+    "texture": "varkin_system:block/blue_plasteel_block"
+  }
+}

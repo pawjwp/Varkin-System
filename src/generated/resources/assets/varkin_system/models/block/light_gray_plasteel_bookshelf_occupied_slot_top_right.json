@@ -1,0 +1,6 @@
+{
+  "parent": "varkin_system:block/template_plasteel_bookshelf_slot_top_right",
+  "textures": {
+    "texture": "varkin_system:block/light_gray_plasteel_bookshelf_occupied"
+  }
+}
