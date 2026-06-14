@@ -99,6 +99,23 @@
     "varkin_system:blue_plasteel_stairs",
     "varkin_system:purple_plasteel_stairs",
     "varkin_system:magenta_plasteel_stairs",
-    "varkin_system:pink_plasteel_stairs"
+    "varkin_system:pink_plasteel_stairs",
+    "varkin_system:pink_plasteel_bookshelf",
+    "varkin_system:white_plasteel_cabinet",
+    "varkin_system:light_gray_plasteel_cabinet",
+    "varkin_system:gray_plasteel_cabinet",
+    "varkin_system:black_plasteel_cabinet",
+    "varkin_system:brown_plasteel_cabinet",
+    "varkin_system:red_plasteel_cabinet",
+    "varkin_system:orange_plasteel_cabinet",
+    "varkin_system:yellow_plasteel_cabinet",
+    "varkin_system:lime_plasteel_cabinet",
+    "varkin_system:green_plasteel_cabinet",
+    "varkin_system:cyan_plasteel_cabinet",
+    "varkin_system:light_blue_plasteel_cabinet",
+    "varkin_system:blue_plasteel_cabinet",
+    "varkin_system:purple_plasteel_cabinet",
+    "varkin_system:magenta_plasteel_cabinet",
+    "varkin_system:pink_plasteel_cabinet"
   ]
 }

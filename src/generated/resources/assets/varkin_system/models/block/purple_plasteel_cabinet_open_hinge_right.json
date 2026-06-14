@@ -1,0 +1,7 @@
+{
+  "parent": "varkin_system:block/cabinet_open_hinge_right",
+  "textures": {
+    "particle": "varkin_system:block/purple_plasteel_cabinet",
+    "texture": "varkin_system:block/purple_plasteel_cabinet"
+  }
+}
