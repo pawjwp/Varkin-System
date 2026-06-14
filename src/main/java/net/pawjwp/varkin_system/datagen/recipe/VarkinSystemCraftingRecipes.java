@@ -46,91 +46,27 @@ public class VarkinSystemCraftingRecipes {
 
 
 
-        // Sliding doors
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition("create"))
-                .addCondition(new ModLoadedCondition("ad_astra"))
-                .addRecipe(c -> {
-                    var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:iron_plating"));
-                    ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
-                                    ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "iron_sliding_door")), 2)
-                            .pattern("PP")
-                            .pattern("GG")
-                            .pattern("PP")
-                            .define('G', Items.GLASS)
-                            .define('P', plating)
-                            .unlockedBy("has_iron_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
-                            .save(c);
-                })
-                .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "iron_sliding_door"));
-
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition("create"))
-                .addCondition(new ModLoadedCondition("ad_astra"))
-                .addRecipe(c -> {
-                    var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:steel_plating"));
-                    ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
-                                    ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "steel_sliding_door")), 2)
-                            .pattern("PP")
-                            .pattern("GG")
-                            .pattern("PP")
-                            .define('G', Items.GLASS)
-                            .define('P', plating)
-                            .unlockedBy("has_steel_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
-                            .save(c);
-                })
-                .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "steel_sliding_door"));
-
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition("create"))
-                .addCondition(new ModLoadedCondition("ad_astra"))
-                .addRecipe(c -> {
-                    var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:desh_plating"));
-                    ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
-                                    ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "desh_sliding_door")), 2)
-                            .pattern("PP")
-                            .pattern("GG")
-                            .pattern("PP")
-                            .define('G', Items.GLASS)
-                            .define('P', plating)
-                            .unlockedBy("has_desh_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
-                            .save(c);
-                })
-                .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "desh_sliding_door"));
-
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition("create"))
-                .addCondition(new ModLoadedCondition("ad_astra"))
-                .addRecipe(c -> {
-                    var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:ostrum_plating"));
-                    ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
-                                    ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "ostrum_sliding_door")), 2)
-                            .pattern("PP")
-                            .pattern("GG")
-                            .pattern("PP")
-                            .define('G', Items.GLASS)
-                            .define('P', plating)
-                            .unlockedBy("has_ostrum_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
-                            .save(c);
-                })
-                .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "ostrum_sliding_door"));
-
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition("create"))
-                .addCondition(new ModLoadedCondition("ad_astra"))
-                .addRecipe(c -> {
-                    var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:calorite_plating"));
-                    ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
-                                    ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "calorite_sliding_door")), 2)
-                            .pattern("PP")
-                            .pattern("GG")
-                            .pattern("PP")
-                            .define('G', Items.GLASS)
-                            .define('P', plating)
-                            .unlockedBy("has_calorite_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
-                            .save(c);
-                })
-                .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "calorite_sliding_door"));
+        // Sliding doors cost 4 plating and 2 glass to make 2 doors
+        // All require Ad Astra and Create
+        for (String material : new String[]{"iron", "steel", "desh", "ostrum", "calorite"}) {
+            String door = material + "_sliding_door";
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("create"))
+                    .addCondition(new ModLoadedCondition("ad_astra"))
+                    .addRecipe(c -> {
+                        var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:" + material + "_plating"));
+                        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
+                                        ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, door)), 2)
+                                .pattern("PP")
+                                .pattern("GG")
+                                .pattern("PP")
+                                .define('G', Items.GLASS)
+                                .define('P', plating)
+                                .unlockedBy("has_" + material + "_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
+                                .save(c);
+                    })
+                    .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, door));
+        }
 
         // Ship chairs (require Create)
         var whitePlasteel = ForgeRegistries.ITEMS.getValue(
