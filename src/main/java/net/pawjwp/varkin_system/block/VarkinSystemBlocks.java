@@ -28,12 +28,9 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class VarkinSystemBlocks {
-    public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, VarkinSystem.MOD_ID);
-    public static final DeferredRegister<Item> BLOCK_ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, VarkinSystem.MOD_ID);
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
-            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, VarkinSystem.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, VarkinSystem.MOD_ID);
+    public static final DeferredRegister<Item> BLOCK_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, VarkinSystem.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, VarkinSystem.MOD_ID);
 
     public static final List<CrystalSet> CRYSTAL_SETS = new ArrayList<>();
 
@@ -154,10 +151,21 @@ public class VarkinSystemBlocks {
     public static final CrystalSet GALENA = registerCrystalSet("galena", MapColor.COLOR_GRAY, 1.5F);
     public static final CrystalSet ELECTRUM = registerCrystalSet("electrum", MapColor.SAND, 1.5F);
 
+    // All plasteel-derived blocks
+    public static final List<RegistryObject<Block>> PLASTEEL_DERIVED_BLOCKS = new ArrayList<>();
+    // Individual arrays for each plasteel-derived block
     public static final List<RegistryObject<Block>> PLASTEEL_BLOCKS = new ArrayList<>();
-    public static final Map<DyeColor, RegistryObject<Block>> PLASTEEL_BLOCKS_BY_COLOR = new EnumMap<>(DyeColor.class);
+    public static final List<RegistryObject<Block>> PLASTEEL_STAIRS = new ArrayList<>();
+    public static final List<RegistryObject<Block>> PLASTEEL_SLABS = new ArrayList<>();
+    public static final List<RegistryObject<Block>> PLASTEEL_BOOKSHELVES = new ArrayList<>();
+    public static final List<RegistryObject<Block>> PLASTEEL_CABINETS = new ArrayList<>();
+    public static final List<RegistryObject<Block>> SHIP_CHAIRS = new ArrayList<>();
 
-    // Register plasteel blocks in aesthetic color order
+    public static final Map<DyeColor, RegistryObject<Block>> SHIP_CHAIRS_BY_COLOR = new EnumMap<>(DyeColor.class);
+
+    public static RegistryObject<BlockEntityType<PlasteelCabinetBlockEntity>> PLASTEEL_CABINET_BE;
+
+    // Ensure plasteel blocks are registered in aesthetic color order
     private static final DyeColor[] ORDERED_DYE_COLORS = {
             DyeColor.WHITE,
             DyeColor.LIGHT_GRAY,
@@ -177,6 +185,7 @@ public class VarkinSystemBlocks {
             DyeColor.PINK
     };
 
+    // Properties shared by all plasteel-derived blocks
     private static BlockBehaviour.Properties plasteelProperties(DyeColor color) {
         return BlockBehaviour.Properties.of()
                 .mapColor(color.getMapColor())
@@ -185,120 +194,53 @@ public class VarkinSystemBlocks {
                 .requiresCorrectToolForDrops();
     }
 
-    private static void registerPlasteel(DyeColor color) {
-        String name = color.getName() + "_plasteel_block";
-        RegistryObject<Block> block = BLOCKS.register(name,
-                () -> new Block(plasteelProperties(color)));
-        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
-                () -> new BlockItem(block.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
-        PLASTEEL_BLOCKS.add(block);
-        PLASTEEL_BLOCKS_BY_COLOR.put(color, block);
-    }
-
     static {
+        boolean SophisticatedStorage = ModList.get().isLoaded("sophisticatedstorage");
+        boolean Create = ModList.get().isLoaded("create");
+
+        // Register all blocks for each color
+        // Items and creative tabs are handled afterward to ensure ordering by block type
         for (DyeColor color : ORDERED_DYE_COLORS) {
-            registerPlasteel(color);
-        }
-    }
+            String prefix = color.getName();
 
-    // Plasteel slabs and stairs
-    public static final List<RegistryObject<Block>> PLASTEEL_SLABS = new ArrayList<>();
-    public static final List<RegistryObject<Block>> PLASTEEL_STAIRS = new ArrayList<>();
-
-    private static void registerPlasteelSlabAndStairs(DyeColor color) {
-        String base = color.getName() + "_plasteel";
-        RegistryObject<Block> plasteel = PLASTEEL_BLOCKS_BY_COLOR.get(color);
-
-        RegistryObject<Block> slab = BLOCKS.register(base + "_slab",
-                () -> new VerticalSlabBlock(plasteelProperties(color)));
-        RegistryObject<Block> stairs = BLOCKS.register(base + "_stairs",
-                () -> new StairBlock(() -> plasteel.get().defaultBlockState(), plasteelProperties(color)));
-
-        RegistryObject<Item> slabItem = BLOCK_ITEMS.register(base + "_slab",
-                () -> new BlockItem(slab.get(), new Item.Properties()));
-        RegistryObject<Item> stairsItem = BLOCK_ITEMS.register(base + "_stairs",
-                () -> new BlockItem(stairs.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(slabItem);
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(stairsItem);
-        PLASTEEL_SLABS.add(slab);
-        PLASTEEL_STAIRS.add(stairs);
-    }
-
-    static {
-        for (DyeColor color : ORDERED_DYE_COLORS) {
-            registerPlasteelSlabAndStairs(color);
-        }
-    }
-
-    // Plasteel chiseled bookshelves reusing ChiseledBookShelfBlock
-    public static final List<RegistryObject<Block>> PLASTEEL_BOOKSHELVES = new ArrayList<>();
-
-    private static void registerPlasteelBookshelf(DyeColor color) {
-        String name = color.getName() + "_plasteel_bookshelf";
-        RegistryObject<Block> bookshelf = BLOCKS.register(name,
-                () -> new ChiseledBookShelfBlock(plasteelProperties(color)));
-        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
-                () -> new BlockItem(bookshelf.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
-        PLASTEEL_BOOKSHELVES.add(bookshelf);
-    }
-
-    static {
-        for (DyeColor color : ORDERED_DYE_COLORS) {
-            registerPlasteelBookshelf(color);
-        }
-    }
-
-    // Plasteel cabinets, reliant on Sophisticated Storage
-    public static final List<RegistryObject<Block>> PLASTEEL_CABINETS = new ArrayList<>();
-    public static RegistryObject<BlockEntityType<PlasteelCabinetBlockEntity>> PLASTEEL_CABINET_BE;
-
-    private static void registerPlasteelCabinet(DyeColor color) {
-        String name = color.getName() + "_plasteel_cabinet";
-        RegistryObject<Block> cabinet = BLOCKS.register(name,
-                () -> new PlasteelCabinetBlock(plasteelProperties(color).noOcclusion()));
-        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
-                () -> new BlockItem(cabinet.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
-        PLASTEEL_CABINETS.add(cabinet);
-    }
-
-    static {
-        if (ModList.get().isLoaded("sophisticatedstorage")) {
-            for (DyeColor color : ORDERED_DYE_COLORS) {
-                registerPlasteelCabinet(color);
+            // Main block
+            RegistryObject<Block> block = BLOCKS.register(prefix + "_plasteel_block", () -> new Block(plasteelProperties(color)));
+            PLASTEEL_BLOCKS.add(block);
+            // Derivatives
+            PLASTEEL_STAIRS.add(BLOCKS.register(prefix + "_plasteel_stairs", () -> new StairBlock(() -> block.get().defaultBlockState(), plasteelProperties(color))));
+            PLASTEEL_SLABS.add(BLOCKS.register(prefix + "_plasteel_slab", () -> new VerticalSlabBlock(plasteelProperties(color))));
+            PLASTEEL_BOOKSHELVES.add(BLOCKS.register(prefix + "_plasteel_bookshelf", () -> new ChiseledBookShelfBlock(plasteelProperties(color))));
+            // Conditional derivatives
+            if (SophisticatedStorage) {
+                PLASTEEL_CABINETS.add(BLOCKS.register(prefix + "_plasteel_cabinet", () -> new PlasteelCabinetBlock(plasteelProperties(color).noOcclusion())));
             }
+            if (Create) {
+                RegistryObject<Block> chair = BLOCKS.register(prefix + "_ship_chair",
+                        () -> new ShipChairBlock(plasteelProperties(color), color));
+                SHIP_CHAIRS.add(chair);
+                SHIP_CHAIRS_BY_COLOR.put(color, chair);
+            }
+        }
+
+        // Assemble combined array by block type
+        PLASTEEL_DERIVED_BLOCKS.addAll(PLASTEEL_BLOCKS);
+        PLASTEEL_DERIVED_BLOCKS.addAll(PLASTEEL_STAIRS);
+        PLASTEEL_DERIVED_BLOCKS.addAll(PLASTEEL_SLABS);
+        PLASTEEL_DERIVED_BLOCKS.addAll(PLASTEEL_BOOKSHELVES);
+        PLASTEEL_DERIVED_BLOCKS.addAll(PLASTEEL_CABINETS);
+        PLASTEEL_DERIVED_BLOCKS.addAll(SHIP_CHAIRS);
+
+        // Register a BlockItem and add to creative tabs for each
+        for (RegistryObject<Block> derived : PLASTEEL_DERIVED_BLOCKS) {
+            RegistryObject<Item> item = BLOCK_ITEMS.register(derived.getId().getPath(), () -> new BlockItem(derived.get(), new Item.Properties()));
+            VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
+        }
+
+        // Register cabinet block entity
+        if (SophisticatedStorage) {
             PLASTEEL_CABINET_BE = BLOCK_ENTITIES.register("plasteel_cabinet",
                     () -> BlockEntityType.Builder.of(PlasteelCabinetBlockEntity::new,
                             PLASTEEL_CABINETS.stream().map(RegistryObject::get).toArray(Block[]::new)).build(null));
-        }
-    }
-
-    // Create seat-based ship chairs for each dye color
-    public static final List<RegistryObject<Block>> SHIP_CHAIRS = new ArrayList<>();
-    public static final Map<DyeColor, RegistryObject<Block>> SHIP_CHAIRS_BY_COLOR = new EnumMap<>(DyeColor.class);
-
-    private static void registerShipChair(DyeColor color) {
-        String name = color.getName() + "_ship_chair";
-        RegistryObject<Block> chair = BLOCKS.register(name,
-                () -> new ShipChairBlock(BlockBehaviour.Properties.of()
-                        .mapColor(color.getMapColor())
-                        .sound(SoundType.METAL)
-                        .strength(1.8F, 6.0F)
-                        .requiresCorrectToolForDrops(), color));
-        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
-                () -> new BlockItem(chair.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
-        SHIP_CHAIRS.add(chair);
-        SHIP_CHAIRS_BY_COLOR.put(color, chair);
-    }
-
-    static {
-        if (ModList.get().isLoaded("create")) {
-            for (DyeColor color : ORDERED_DYE_COLORS) {
-                registerShipChair(color);
-            }
         }
     }
 
