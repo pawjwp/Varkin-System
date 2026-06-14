@@ -67,6 +67,16 @@ public class VarkinSystemItemModels extends ItemModelProvider {
             });
         }
 
+        // Plasteel cabinets use their closed, left-hinge model
+        Set<Item> cabinetItems = new HashSet<>();
+        for (RegistryObject<Block> cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
+            cabinetItems.add(cabinet.get().asItem());
+        }
+        if (!cabinetItems.isEmpty()) {
+            takeAll(items, cabinetItems::contains).forEach(item ->
+                    withExistingParent(itemName(item), resourceBlock(itemName(item) + "_closed_hinge_left")));
+        }
+
         // Blocks whose items look alike
         takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
 

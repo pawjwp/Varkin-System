@@ -230,6 +230,31 @@ public class VarkinSystemBlocks {
         }
     }
 
+    // Plasteel cabinets, reliant on Sophisticated Storage
+    public static final List<RegistryObject<Block>> PLASTEEL_CABINETS = new ArrayList<>();
+    public static RegistryObject<BlockEntityType<PlasteelCabinetBlockEntity>> PLASTEEL_CABINET_BE;
+
+    private static void registerPlasteelCabinet(DyeColor color) {
+        String name = color.getName() + "_plasteel_cabinet";
+        RegistryObject<Block> cabinet = BLOCKS.register(name,
+                () -> new PlasteelCabinetBlock(plasteelProperties(color).noOcclusion()));
+        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
+                () -> new BlockItem(cabinet.get(), new Item.Properties()));
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
+        PLASTEEL_CABINETS.add(cabinet);
+    }
+
+    static {
+        if (ModList.get().isLoaded("sophisticatedstorage")) {
+            for (DyeColor color : ORDERED_DYE_COLORS) {
+                registerPlasteelCabinet(color);
+            }
+            PLASTEEL_CABINET_BE = BLOCK_ENTITIES.register("plasteel_cabinet",
+                    () -> BlockEntityType.Builder.of(PlasteelCabinetBlockEntity::new,
+                            PLASTEEL_CABINETS.stream().map(RegistryObject::get).toArray(Block[]::new)).build(null));
+        }
+    }
+
     // Create seat-based ship chairs for each dye color
     public static final List<RegistryObject<Block>> SHIP_CHAIRS = new ArrayList<>();
     public static final Map<DyeColor, RegistryObject<Block>> SHIP_CHAIRS_BY_COLOR = new EnumMap<>(DyeColor.class);

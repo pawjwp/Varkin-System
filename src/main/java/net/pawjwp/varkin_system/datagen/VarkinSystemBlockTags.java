@@ -79,6 +79,10 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             stairsTag.add(stairs.get());
         }
 
+        for (RegistryObject<Block> cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
+            pickaxeTag.add(cabinet.get());
+        }
+
         this.tag(VarkinSystemTags.BASE_STONE_ICARUS)
                 .add(
                         Blocks.NETHERRACK,

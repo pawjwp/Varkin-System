@@ -4,18 +4,24 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChiseledBookShelfBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockBase;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.LavaLoggableBlock;
 import net.pawjwp.varkin_system.block.LavaLoggableCrystal;
+import net.pawjwp.varkin_system.block.PlasteelCabinetBlock;
 import net.pawjwp.varkin_system.block.ShipChairBlock;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
@@ -106,6 +112,44 @@ public class VarkinSystemBlockStates extends BlockStateProvider {
                 return ConfiguredModel.builder().modelFile(model).rotationY(rot).build();
             }, BlockStateProperties.WATERLOGGED);
         }
+
+        for (var cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
+            cabinetBlock((PlasteelCabinetBlock) cabinet.get());
+        }
+    }
+
+    // Cabinet doors
+    private void cabinetBlock(PlasteelCabinetBlock block) {
+        String name = blockName(block);
+        ResourceLocation tex = resourceBlock(name);
+        ModelFile closedLeft = cabinetModel(name + "_closed_hinge_left", "cabinet_closed_hinge_left", tex);
+        ModelFile closedRight = cabinetModel(name + "_closed_hinge_right", "cabinet_closed_hinge_right", tex);
+        ModelFile openLeft = cabinetModel(name + "_open_hinge_left", "cabinet_open_hinge_left", tex);
+        ModelFile openRight = cabinetModel(name + "_open_hinge_right", "cabinet_open_hinge_right", tex);
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            boolean open = state.getValue(PlasteelCabinetBlock.OPEN);
+            boolean right = state.getValue(PlasteelCabinetBlock.HINGE) == DoorHingeSide.RIGHT;
+            ModelFile model = open ? (right ? openRight : openLeft) : (right ? closedRight : closedLeft);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(horizontalYRot(state.getValue(PlasteelCabinetBlock.DIRECTION)))
+                    .build();
+        }, StorageBlockBase.TICKING);
+    }
+
+    private ModelFile cabinetModel(String name, String parent, ResourceLocation tex) {
+        return models().withExistingParent(name, resourceBlock(parent))
+                .texture("texture", tex).texture("particle", tex);
+    }
+
+    private int horizontalYRot(Direction dir) {
+        return switch (dir) {
+            case EAST -> 90;
+            case SOUTH -> 180;
+            case WEST -> 270;
+            default -> 0;
+        };
     }
 
     private String chairColor(Block chair) {
