@@ -49,6 +49,7 @@ public class VarkinSystemCraftingRecipes {
         // Sliding doors
         ConditionalRecipe.builder()
                 .addCondition(new ModLoadedCondition("create"))
+                .addCondition(new ModLoadedCondition("ad_astra"))
                 .addRecipe(c -> {
                     var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:iron_plating"));
                     ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
@@ -65,6 +66,7 @@ public class VarkinSystemCraftingRecipes {
 
         ConditionalRecipe.builder()
                 .addCondition(new ModLoadedCondition("create"))
+                .addCondition(new ModLoadedCondition("ad_astra"))
                 .addRecipe(c -> {
                     var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:steel_plating"));
                     ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
@@ -81,6 +83,7 @@ public class VarkinSystemCraftingRecipes {
 
         ConditionalRecipe.builder()
                 .addCondition(new ModLoadedCondition("create"))
+                .addCondition(new ModLoadedCondition("ad_astra"))
                 .addRecipe(c -> {
                     var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:desh_plating"));
                     ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
@@ -97,6 +100,7 @@ public class VarkinSystemCraftingRecipes {
 
         ConditionalRecipe.builder()
                 .addCondition(new ModLoadedCondition("create"))
+                .addCondition(new ModLoadedCondition("ad_astra"))
                 .addRecipe(c -> {
                     var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:ostrum_plating"));
                     ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
@@ -113,6 +117,7 @@ public class VarkinSystemCraftingRecipes {
 
         ConditionalRecipe.builder()
                 .addCondition(new ModLoadedCondition("create"))
+                .addCondition(new ModLoadedCondition("ad_astra"))
                 .addRecipe(c -> {
                     var plating = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("ad_astra:calorite_plating"));
                     ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE,
