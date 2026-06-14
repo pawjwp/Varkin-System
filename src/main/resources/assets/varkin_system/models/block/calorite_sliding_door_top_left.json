@@ -1,6 +1,6 @@
 {
 	"parent": "varkin_system:block/sliding_door_top_left",
 	"textures": {
-		"0": "varkin_system:block/calorite_sliding_door"
+		"0": "varkin_system:block/sliding_door/calorite"
 	}
 }
