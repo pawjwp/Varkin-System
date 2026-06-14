@@ -50,18 +50,18 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
                     .add(set.storageBlock().get());
         }
 
-        for (RegistryObject<Block> chair : VarkinSystemBlocks.SHIP_CHAIRS) {
-            pickaxeTag.add(chair.get());
-        }
-
         // Stop Quark from interfering with double door opening
         var nonDoubleDoorTag = this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("quark", "non_double_door")));
         for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
             nonDoubleDoorTag.add(door.get());
         }
 
-        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
+        // Every plasteel-derived block is pickaxe-mineable
+        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_DERIVED_BLOCKS) {
             pickaxeTag.add(block.get());
+        }
+
+        for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             this.tag(VarkinSystemTags.PLASTEEL_BLOCK).add(block.get());
             this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/plasteel"))).add(block.get());
             this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("desolate_planet", "plasteel_block"))).add(block.get());
@@ -69,21 +69,12 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
 
         var slabsTag = this.tag(BlockTags.SLABS);
         for (RegistryObject<Block> slab : VarkinSystemBlocks.PLASTEEL_SLABS) {
-            pickaxeTag.add(slab.get());
             slabsTag.add(slab.get());
         }
 
         var stairsTag = this.tag(BlockTags.STAIRS);
         for (RegistryObject<Block> stairs : VarkinSystemBlocks.PLASTEEL_STAIRS) {
-            pickaxeTag.add(stairs.get());
             stairsTag.add(stairs.get());
-        }
-
-        for (RegistryObject<Block> bookshelf : VarkinSystemBlocks.PLASTEEL_BOOKSHELVES) {
-            pickaxeTag.add(bookshelf.get());
-        }
-        for (RegistryObject<Block> cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
-            pickaxeTag.add(cabinet.get());
         }
 
         this.tag(VarkinSystemTags.BASE_STONE_ICARUS)
