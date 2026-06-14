@@ -79,6 +79,9 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             stairsTag.add(stairs.get());
         }
 
+        for (RegistryObject<Block> bookshelf : VarkinSystemBlocks.PLASTEEL_BOOKSHELVES) {
+            pickaxeTag.add(bookshelf.get());
+        }
         for (RegistryObject<Block> cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
             pickaxeTag.add(cabinet.get());
         }

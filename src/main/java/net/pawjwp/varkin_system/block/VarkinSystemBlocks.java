@@ -6,6 +6,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ChiseledBookShelfBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -227,6 +228,25 @@ public class VarkinSystemBlocks {
     static {
         for (DyeColor color : ORDERED_DYE_COLORS) {
             registerPlasteelSlabAndStairs(color);
+        }
+    }
+
+    // Plasteel chiseled bookshelves reusing ChiseledBookShelfBlock
+    public static final List<RegistryObject<Block>> PLASTEEL_BOOKSHELVES = new ArrayList<>();
+
+    private static void registerPlasteelBookshelf(DyeColor color) {
+        String name = color.getName() + "_plasteel_bookshelf";
+        RegistryObject<Block> bookshelf = BLOCKS.register(name,
+                () -> new ChiseledBookShelfBlock(plasteelProperties(color)));
+        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
+                () -> new BlockItem(bookshelf.get(), new Item.Properties()));
+        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
+        PLASTEEL_BOOKSHELVES.add(bookshelf);
+    }
+
+    static {
+        for (DyeColor color : ORDERED_DYE_COLORS) {
+            registerPlasteelBookshelf(color);
         }
     }
 

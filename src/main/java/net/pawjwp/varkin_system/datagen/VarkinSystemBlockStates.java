@@ -113,8 +113,58 @@ public class VarkinSystemBlockStates extends BlockStateProvider {
             }, BlockStateProperties.WATERLOGGED);
         }
 
+        plasteelBookshelves();
+
         for (var cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
             cabinetBlock((PlasteelCabinetBlock) cabinet.get());
+        }
+    }
+
+    // Slot positions
+    private static final String[] SLOT_POSITIONS = {
+            "top_left", "top_mid", "top_right", "bottom_left", "bottom_mid", "bottom_right"
+    };
+
+    // Mimics vanilla's chiseled bookshelf with no front face
+    // Six flat slots make up the front of the bookshelf
+    // A separate model with a real front face is used when in-inventory
+    private void plasteelBookshelves() {
+        ResourceLocation bodyTemplate = resourceBlock("template_plasteel_bookshelf");
+        ResourceLocation inventoryTemplate = resourceBlock("template_plasteel_bookshelf_inventory");
+
+        for (var bookshelf : VarkinSystemBlocks.PLASTEEL_BOOKSHELVES) {
+            String name = blockName(bookshelf.get());
+            String color = name.replace("_plasteel_bookshelf", "");
+            ResourceLocation plasteel = resourceBlock(color + "_plasteel_block");
+            ResourceLocation empty = resourceBlock(name + "_empty");
+            ResourceLocation occupied = resourceBlock(name + "_occupied");
+
+            ModelFile body = models().withExistingParent(name, bodyTemplate).texture("texture", plasteel);
+            models().withExistingParent(name + "_inventory", inventoryTemplate)
+                    .texture("texture", plasteel).texture("front", empty);
+
+            ModelFile[] emptySlots = new ModelFile[6];
+            ModelFile[] occupiedSlots = new ModelFile[6];
+            for (int i = 0; i < 6; i++) {
+                String pos = SLOT_POSITIONS[i];
+                ResourceLocation template = resourceBlock("template_plasteel_bookshelf_slot_" + pos);
+                emptySlots[i] = models().withExistingParent(name + "_empty_slot_" + pos, template).texture("texture", empty);
+                occupiedSlots[i] = models().withExistingParent(name + "_occupied_slot_" + pos, template).texture("texture", occupied);
+            }
+
+            var multipart = getMultipartBuilder(bookshelf.get());
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                int y = horizontalYRot(dir);
+                multipart.part().modelFile(body).rotationY(y).uvLock(true).addModel()
+                        .condition(HorizontalDirectionalBlock.FACING, dir);
+                for (int i = 0; i < 6; i++) {
+                    BooleanProperty slot = ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.get(i);
+                    multipart.part().modelFile(occupiedSlots[i]).rotationY(y).addModel()
+                            .condition(HorizontalDirectionalBlock.FACING, dir).condition(slot, true);
+                    multipart.part().modelFile(emptySlots[i]).rotationY(y).addModel()
+                            .condition(HorizontalDirectionalBlock.FACING, dir).condition(slot, false);
+                }
+            }
         }
     }
 

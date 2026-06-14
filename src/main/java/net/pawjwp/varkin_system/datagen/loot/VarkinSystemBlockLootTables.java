@@ -60,6 +60,11 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
         for (RegistryObject<Block> chair : VarkinSystemBlocks.SHIP_CHAIRS) {
             this.dropSelf(chair.get());
         }
+
+        // Bookshelves and cabinets drop themselves (inventories also dropped on removal)
+        for (RegistryObject<Block> bookshelf : VarkinSystemBlocks.PLASTEEL_BOOKSHELVES) {
+            this.dropSelf(bookshelf.get());
+        }
         for (RegistryObject<Block> cabinet : VarkinSystemBlocks.PLASTEEL_CABINETS) {
             this.dropSelf(cabinet.get());
         }

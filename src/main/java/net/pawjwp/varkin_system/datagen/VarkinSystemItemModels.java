@@ -77,6 +77,16 @@ public class VarkinSystemItemModels extends ItemModelProvider {
                     withExistingParent(itemName(item), resourceBlock(itemName(item) + "_closed_hinge_left")));
         }
 
+        // Bookshelves use their inventory model (the in-world body has no front face)
+        Set<Item> bookshelfItems = new HashSet<>();
+        for (RegistryObject<Block> bookshelf : VarkinSystemBlocks.PLASTEEL_BOOKSHELVES) {
+            bookshelfItems.add(bookshelf.get().asItem());
+        }
+        if (!bookshelfItems.isEmpty()) {
+            takeAll(items, bookshelfItems::contains)
+                    .forEach(item -> blockBasedModel(item, "_inventory"));
+        }
+
         // Blocks whose items look alike
         takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
 
