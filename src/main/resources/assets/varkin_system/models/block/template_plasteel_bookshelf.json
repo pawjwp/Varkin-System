@@ -1,0 +1,18 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {"particle": "#texture"},
+	"elements": [
+		{
+			"name": "plasteel_bookshelf_body",
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	]
+}
