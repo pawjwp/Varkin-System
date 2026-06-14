@@ -20,7 +20,7 @@ public class VarkinSystemTags {
     public static final TagKey<Block> BASE_STONE_ICARUS =
             BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "base_stone_icarus"));
     public static final TagKey<Block> PLASTEEL_BLOCK =
-            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_block"));
+            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_blocks"));
 
     // Item tags
     public static final TagKey<Item> CRYSTAL_SHARDS =
@@ -28,7 +28,7 @@ public class VarkinSystemTags {
     public static final TagKey<Item> SHIP_CHAIRS =
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "ship_chairs"));
     public static final TagKey<Item> PLASTEEL_BLOCKS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_block"));
+            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_blocks"));
     public static final TagKey<Item> PLASTEEL_SLABS =
             ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_slabs"));
     public static final TagKey<Item> PLASTEEL_STAIRS =
