@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-14T12:44:09.3509393	Tags for minecraft:block mod id varkin_system
+// 1.20.1	2026-06-15T00:07:16.3632644	Tags for minecraft:block mod id varkin_system
 7b0802bb4a598a7d56ab719621a024bc8a88f4f8 data/desolate_planet/tags/blocks/plasteel_block.json
 eee47ed5c254612c5e36b0c0e5194e954822457b data/forge/tags/blocks/storage_blocks/chalcopyrite.json
 b75736f0b2390334265ebad375df5077ec322284 data/forge/tags/blocks/storage_blocks/electrum.json
@@ -15,4 +15,4 @@ e680dafd995ae0b615050aa947fbc7af6a7093f8 data/varkin_system/tags/blocks/base_sto
 bca0511409673ef26d2142bbd9974b80d9dad003 data/varkin_system/tags/blocks/budding_crystals.json
 e48b0ba2693a8c64925800467fbb3cd20dd3694d data/varkin_system/tags/blocks/crystal_blocks.json
 9cb0a92ca4af819cc6334bd6ad55d546f447f2f9 data/varkin_system/tags/blocks/crystal_clusters.json
-7b0802bb4a598a7d56ab719621a024bc8a88f4f8 data/varkin_system/tags/blocks/plasteel_block.json
+7b0802bb4a598a7d56ab719621a024bc8a88f4f8 data/varkin_system/tags/blocks/plasteel_blocks.json

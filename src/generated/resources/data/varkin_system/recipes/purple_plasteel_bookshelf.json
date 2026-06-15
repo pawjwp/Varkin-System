@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "varkin_system:purple_plasteel_block"
+    },
+    "S": {
+      "item": "varkin_system:purple_plasteel_slab"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "SSS",
+    "PPP"
+  ],
+  "result": {
+    "item": "varkin_system:purple_plasteel_bookshelf"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "D": {
+      "item": "minecraft:black_dye"
+    },
+    "P": {
+      "tag": "varkin_system:plasteel_blocks"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PDP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "item": "varkin_system:black_plasteel_block"
+  },
+  "show_notification": true
+}

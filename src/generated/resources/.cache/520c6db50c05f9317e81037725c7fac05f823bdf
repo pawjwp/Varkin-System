@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-11T21:56:23.430606	Tags for minecraft:item mod id varkin_system
+// 1.20.1	2026-06-15T00:07:16.3548425	Tags for minecraft:item mod id varkin_system
 bc8189015447fd79be1d9569eac95839c84aab5e data/forge/tags/items/dusts/chalcopyrite.json
 e49579b1a245f0033a457d02632c0529aa240b3a data/forge/tags/items/dusts/electrum.json
 398b7cc0da24e2319b6e58ac1f580409d4a3818f data/forge/tags/items/dusts/galena.json
@@ -20,7 +20,9 @@ c556ba5628cb3fa4785f4984291cc2d3a9e56945 data/forge/tags/items/storage_blocks/st
 4959b48d0fc2aea422c0cf11e96066ebf56bbeba data/minecraft/tags/items/slabs.json
 8cd45e4118224707bbbbabe3b9c17ed8b80d3d93 data/minecraft/tags/items/stairs.json
 2412edbb965c97c5803e128827b5b5c9134aa418 data/varkin_system/tags/items/crystal_shards.json
-7b0802bb4a598a7d56ab719621a024bc8a88f4f8 data/varkin_system/tags/items/plasteel_block.json
+7b0802bb4a598a7d56ab719621a024bc8a88f4f8 data/varkin_system/tags/items/plasteel_blocks.json
+d3ff9978b96de20dfd9e2db751626cf2a167141c data/varkin_system/tags/items/plasteel_bookshelves.json
+7fb2f349591cad7a4ae821fbefd7516631cf845a data/varkin_system/tags/items/plasteel_cabinets.json
 4959b48d0fc2aea422c0cf11e96066ebf56bbeba data/varkin_system/tags/items/plasteel_slabs.json
 8cd45e4118224707bbbbabe3b9c17ed8b80d3d93 data/varkin_system/tags/items/plasteel_stairs.json
 2280bd26b977dc1d1fbc74dfcbf1d6b35940acf3 data/varkin_system/tags/items/ship_chairs.json

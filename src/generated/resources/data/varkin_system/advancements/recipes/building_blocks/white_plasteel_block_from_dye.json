@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_plasteel_block": {
+    "has_dye": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_plasteel_block",
+      "has_dye",
       "has_the_recipe"
     ]
   ],

@@ -10,7 +10,7 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shapeless",
-        "category": "misc",
+        "category": "building",
         "ingredients": [
           {
             "item": "minecraft:red_dye"
