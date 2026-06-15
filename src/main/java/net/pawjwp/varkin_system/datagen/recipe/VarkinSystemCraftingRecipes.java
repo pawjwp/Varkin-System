@@ -73,7 +73,10 @@ public class VarkinSystemCraftingRecipes {
             Item block = item(color.getName() + "_plasteel_block");
             Item slab = item(color.getName() + "_plasteel_slab");
             Item stairs = item(color.getName() + "_plasteel_stairs");
+            Item dyeItem = DyeItem.byColor(color);
+
             var hasBlock = InventoryChangeTrigger.TriggerInstance.hasItems(block);
+            var hasDye = InventoryChangeTrigger.TriggerInstance.hasItems(dyeItem);
 
             // ------------------------------
             // Plasteel derived block recipes
@@ -120,6 +123,51 @@ public class VarkinSystemCraftingRecipes {
                                 .save(cc);
                     })
                     .build(consumer, id(color.getName() + "_ship_chair"));
+
+            // ---------------------------------
+            // Plasteel derived block recoloring
+            // ---------------------------------
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_plasteel_block"))
+                    .requires(dyeItem)
+                    .requires(VarkinSystemTags.PLASTEEL_BLOCKS)
+                    .unlockedBy("has_dye", hasDye)
+                    .save(consumer, id(color.getName() + "_plasteel_block_from_dye"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_plasteel_slab"))
+                    .requires(dyeItem)
+                    .requires(VarkinSystemTags.PLASTEEL_SLABS)
+                    .unlockedBy("has_dye", hasDye)
+                    .save(consumer, id(color.getName() + "_plasteel_slab_from_dye"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_plasteel_stairs"))
+                    .requires(dyeItem)
+                    .requires(VarkinSystemTags.PLASTEEL_STAIRS)
+                    .unlockedBy("has_dye", hasDye)
+                    .save(consumer, id(color.getName() + "_plasteel_stairs_from_dye"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_plasteel_bookshelf"))
+                    .requires(dyeItem)
+                    .requires(VarkinSystemTags.PLASTEEL_BOOKSHELVES)
+                    .unlockedBy("has_dye", hasDye)
+                    .save(consumer, id(color.getName() + "_plasteel_bookshelf_from_dye"));
+
+            // Cabinet recolor (if Sophisticated Storage is present)
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("sophisticatedstorage"))
+                    .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_plasteel_cabinet"))
+                            .requires(dyeItem)
+                            .requires(VarkinSystemTags.PLASTEEL_CABINETS)
+                            .unlockedBy("has_dye", hasDye)
+                            .save(cc, id(color.getName() + "_plasteel_cabinet_from_dye")))
+                    .build(consumer, id(color.getName() + "_plasteel_cabinet_from_dye"));
+
+            // Ship chair recolor (if Create is present)
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("create"))
+                    .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_ship_chair"))
+                            .requires(dyeItem)
+                            .requires(VarkinSystemTags.SHIP_CHAIRS)
+                            .unlockedBy("has_dye", hasDye)
+                            .save(cc, id(color.getName() + "_ship_chair_from_dye")))
+                    .build(consumer, id(color.getName() + "_ship_chair_from_dye"));
         }
     }
 
