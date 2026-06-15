@@ -68,41 +68,16 @@ public class VarkinSystemCraftingRecipes {
                     .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, door));
         }
 
-        // Ship chairs (require Create)
-        var whitePlasteel = ForgeRegistries.ITEMS.getValue(
-                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "white_plasteel_block"));
-        for (DyeColor color : DyeColor.values()) {
-            String name = color.getName() + "_ship_chair";
-
-            // 4 white plasteel + 2 wool (or the matching Create seat)
-            ConditionalRecipe.builder()
-                    .addCondition(new ModLoadedCondition("create"))
-                    .addRecipe(c -> {
-                        Item chair = ForgeRegistries.ITEMS.getValue(
-                                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
-                        Item wool = ForgeRegistries.ITEMS.getValue(
-                                ResourceLocation.fromNamespaceAndPath("minecraft", color.getName() + "_wool"));
-                        Item seat = ForgeRegistries.ITEMS.getValue(
-                                ResourceLocation.fromNamespaceAndPath("create", color.getName() + "_seat"));
-                        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, chair)
-                                .pattern("W  ")
-                                .pattern("PWP")
-                                .pattern("PP ")
-                                .define('W', Ingredient.of(wool, seat))
-                                .define('P', whitePlasteel)
-                                .unlockedBy("has_white_plasteel_block",
-                                        InventoryChangeTrigger.TriggerInstance.hasItems(whitePlasteel))
-                                .save(c);
-                    })
-                    .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
-        }
-
-        // Plasteel slabs and stairs
+        // Construction recipes for each plasteel block type
         for (DyeColor color : DyeColor.values()) {
             Item block = item(color.getName() + "_plasteel_block");
             Item slab = item(color.getName() + "_plasteel_slab");
             Item stairs = item(color.getName() + "_plasteel_stairs");
             var hasBlock = InventoryChangeTrigger.TriggerInstance.hasItems(block);
+
+            // ------------------------------
+            // Plasteel derived block recipes
+            // ------------------------------
 
             // slab recipe
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
@@ -127,6 +102,24 @@ public class VarkinSystemCraftingRecipes {
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
                     .unlockedBy("has_plasteel_block", hasBlock)
                     .save(consumer, id(color.getName() + "_plasteel_stairs_from_stonecutting"));
+
+            // Ship chair is crafted from 4 white plasteel and 2 wool or a Create seat
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("create"))
+                    .addRecipe(cc -> {
+                        Item whitePlasteel = item("white_plasteel_block");
+                        Item wool = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("minecraft", color.getName() + "_wool"));
+                        Item seat = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("create", color.getName() + "_seat"));
+                        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, item(color.getName() + "_ship_chair"))
+                                .pattern("W  ")
+                                .pattern("PWP")
+                                .pattern("PP ")
+                                .define('W', Ingredient.of(wool, seat))
+                                .define('P', whitePlasteel)
+                                .unlockedBy("has_white_plasteel_block", InventoryChangeTrigger.TriggerInstance.hasItems(whitePlasteel))
+                                .save(cc);
+                    })
+                    .build(consumer, id(color.getName() + "_ship_chair"));
         }
     }
 
