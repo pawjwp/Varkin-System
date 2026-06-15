@@ -12,6 +12,7 @@ import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -82,14 +83,17 @@ public class VarkinSystemCraftingRecipes {
             // Plasteel derived block recipes
             // ------------------------------
 
-            // slab recipe
+            // Slabs
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slab, 6)
                     .pattern("###")
                     .define('#', block)
                     .unlockedBy("has_plasteel_block", hasBlock)
                     .save(consumer);
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, slab, 2)
+                    .unlockedBy("has_plasteel_block", hasBlock)
+                    .save(consumer, id(color.getName() + "_plasteel_slab_from_stonecutting"));
 
-            // stair recipe
+            // Stairs
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairs, 4)
                     .pattern("#  ")
                     .pattern("## ")
@@ -97,16 +101,34 @@ public class VarkinSystemCraftingRecipes {
                     .define('#', block)
                     .unlockedBy("has_plasteel_block", hasBlock)
                     .save(consumer);
-
-            // Stonecutting from full block
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, slab, 2)
-                    .unlockedBy("has_plasteel_block", hasBlock)
-                    .save(consumer, id(color.getName() + "_plasteel_slab_from_stonecutting"));
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
                     .unlockedBy("has_plasteel_block", hasBlock)
                     .save(consumer, id(color.getName() + "_plasteel_stairs_from_stonecutting"));
+            
+            // Bookshelf (crafted from 6 plasteel and 3 plasteel slabs)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, item(color.getName() + "_plasteel_bookshelf"))
+                    .pattern("PPP")
+                    .pattern("SSS")
+                    .pattern("PPP")
+                    .define('P', block)
+                    .define('S', slab)
+                    .unlockedBy("has_plasteel_block", hasBlock)
+                    .save(consumer);
 
-            // Ship chair is crafted from 4 white plasteel and 2 wool or a Create seat
+            // Cabinet (crafted from a chest and 8 plasteel, only if Sophisticated Storage is present)
+            ConditionalRecipe.builder()
+                    .addCondition(new ModLoadedCondition("sophisticatedstorage"))
+                    .addRecipe(cc -> ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, item(color.getName() + "_plasteel_cabinet"))
+                            .pattern("PPP")
+                            .pattern("PCP")
+                            .pattern("PPP")
+                            .define('P', block)
+                            .define('C', Tags.Items.CHESTS_WOODEN)
+                            .unlockedBy("has_plasteel_block", hasBlock)
+                            .save(cc))
+                    .build(consumer, id(color.getName() + "_plasteel_cabinet"));
+
+            // Ship chair (crafted from 4 white plasteel and 2 wool or a Create seat, only if Create is present)
             ConditionalRecipe.builder()
                     .addCondition(new ModLoadedCondition("create"))
                     .addRecipe(cc -> {
