@@ -190,6 +190,16 @@ public class VarkinSystemCraftingRecipes {
                             .unlockedBy("has_dye", hasDye)
                             .save(cc, id(color.getName() + "_ship_chair_from_dye")))
                     .build(consumer, id(color.getName() + "_ship_chair_from_dye"));
+
+            // Recipe to bulk craft 8 plasteel blocks from one dye
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, block, 8)
+                    .pattern("PPP")
+                    .pattern("PDP")
+                    .pattern("PPP")
+                    .define('P', VarkinSystemTags.PLASTEEL_BLOCKS)
+                    .define('D', DyeItem.byColor(color))
+                    .unlockedBy("has_plasteel_block", InventoryChangeTrigger.TriggerInstance.hasItems(block))
+                    .save(consumer, id(color.getName() + "_plasteel_block_from_bulk_dye"));
         }
     }
 
