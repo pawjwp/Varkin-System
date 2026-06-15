@@ -95,34 +95,6 @@ public class VarkinSystemCraftingRecipes {
                                 .save(c);
                     })
                     .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
-
-            // Recolour any ship chair with a dye
-            ConditionalRecipe.builder()
-                    .addCondition(new ModLoadedCondition("create"))
-                    .addRecipe(c -> {
-                        Item chair = ForgeRegistries.ITEMS.getValue(
-                                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
-                        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, chair)
-                                .requires(DyeItem.byColor(color))
-                                .requires(VarkinSystemTags.SHIP_CHAIRS)
-                                .unlockedBy("has_ship_chair", InventoryChangeTrigger.TriggerInstance.hasItems(
-                                        DyeItem.byColor(color)))
-                                .save(c);
-                    })
-                    .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name + "_from_dye"));
-        }
-
-        // Recolour any plasteel block with a dye
-        for (DyeColor color : DyeColor.values()) {
-            String name = color.getName() + "_plasteel_block";
-            Item plasteelBlock = ForgeRegistries.ITEMS.getValue(
-                    ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, plasteelBlock)
-                    .requires(DyeItem.byColor(color))
-                    .requires(VarkinSystemTags.PLASTEEL_BLOCKS)
-                    .unlockedBy("has_plasteel_block", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            DyeItem.byColor(color)))
-                    .save(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, name + "_from_dye"));
         }
 
         // Plasteel slabs and stairs
@@ -155,18 +127,6 @@ public class VarkinSystemCraftingRecipes {
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(block), RecipeCategory.BUILDING_BLOCKS, stairs, 1)
                     .unlockedBy("has_plasteel_block", hasBlock)
                     .save(consumer, id(color.getName() + "_plasteel_stairs_from_stonecutting"));
-
-            // Recolor any stair/slab
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, slab)
-                    .requires(DyeItem.byColor(color))
-                    .requires(VarkinSystemTags.PLASTEEL_SLABS)
-                    .unlockedBy("has_plasteel_slab", InventoryChangeTrigger.TriggerInstance.hasItems(DyeItem.byColor(color)))
-                    .save(consumer, id(color.getName() + "_plasteel_slab_from_dye"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, stairs)
-                    .requires(DyeItem.byColor(color))
-                    .requires(VarkinSystemTags.PLASTEEL_STAIRS)
-                    .unlockedBy("has_plasteel_stairs", InventoryChangeTrigger.TriggerInstance.hasItems(DyeItem.byColor(color)))
-                    .save(consumer, id(color.getName() + "_plasteel_stairs_from_dye"));
         }
     }
 
