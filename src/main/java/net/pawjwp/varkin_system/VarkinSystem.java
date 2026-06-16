@@ -16,6 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.pawjwp.varkin_system.compat.NoGravityFix;
+import net.pawjwp.varkin_system.config.VarkinSystemConfig;
 import net.pawjwp.varkin_system.item.VarkinSystemCreativeTabs;
 import net.pawjwp.varkin_system.item.VarkinSystemItems;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
@@ -54,14 +55,15 @@ public class VarkinSystem
         modEventBus.addListener(this::addCreative);
 
         // Register config
-        // modEventBus.addListener(VarkinSystemConfig::onLoad);
-        // modEventBus.addListener(VarkinSystemConfig::onReload);
+        context.registerConfig(ModConfig.Type.COMMON, VarkinSystemConfig.COMMON_SPEC);
+        modEventBus.addListener(VarkinSystemConfig::onLoad);
+        modEventBus.addListener(VarkinSystemConfig::onReload);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Ad Astra-specific features
-        if (ModList.get().isLoaded("ad_astra")) {
+        if (ModList.get().isLoaded("ad_astra") && VarkinSystemConfig.enableNoGravityFix) {
             NoGravityFix.register();
         }
     }
@@ -86,7 +88,7 @@ public class VarkinSystem
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            if (ModList.get().isLoaded("ad_astra")) {
+            if (ModList.get().isLoaded("ad_astra") && VarkinSystemConfig.enableSolarSystemRenderer) {
                 VarkinSystemSolarSystemRenderer.register();
             }
         }

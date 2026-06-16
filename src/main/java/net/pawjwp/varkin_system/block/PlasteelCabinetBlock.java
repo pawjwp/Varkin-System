@@ -29,6 +29,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
+import net.pawjwp.varkin_system.config.VarkinSystemConfig;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockBase;
 import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockEntity;
@@ -40,9 +41,6 @@ public class PlasteelCabinetBlock extends StorageBlockBase {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final EnumProperty<DoorHingeSide> HINGE = BlockStateProperties.DOOR_HINGE;
 
-    private static final int INVENTORY_SLOTS = 27;
-    private static final int UPGRADE_SLOTS = 3;
-
     // Different voxel shapes for each rotation
     private static final VoxelShape SHAPE_NORTH = Block.box(3, 2, 0, 13, 14, 5);
     private static final VoxelShape SHAPE_EAST = Block.box(11, 2, 3, 16, 14, 13);
@@ -50,7 +48,7 @@ public class PlasteelCabinetBlock extends StorageBlockBase {
     private static final VoxelShape SHAPE_WEST = Block.box(0, 2, 3, 5, 14, 13);
 
     public PlasteelCabinetBlock(Properties properties) {
-        super(properties, () -> INVENTORY_SLOTS, () -> UPGRADE_SLOTS);
+        super(properties, () -> VarkinSystemConfig.cabinetInventorySize, () -> VarkinSystemConfig.cabinetUpgradeSlots);
         registerDefaultState(getStateDefinition().any()
                 .setValue(DIRECTION, Direction.NORTH)
                 .setValue(OPEN, false)
