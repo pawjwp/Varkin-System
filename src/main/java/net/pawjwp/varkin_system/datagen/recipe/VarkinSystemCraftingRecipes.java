@@ -71,6 +71,7 @@ public class VarkinSystemCraftingRecipes {
                                 .unlockedBy("has_" + material + "_plating", InventoryChangeTrigger.TriggerInstance.hasItems(plating))
                                 .save(c);
                     })
+                    .generateAdvancement()
                     .build(consumer, ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, door));
         }
 
@@ -131,6 +132,7 @@ public class VarkinSystemCraftingRecipes {
                             .define('C', Tags.Items.CHESTS_WOODEN)
                             .unlockedBy("has_plasteel_block", hasBlock)
                             .save(cc))
+                    .generateAdvancement()
                     .build(consumer, id(color.getName() + "_plasteel_cabinet"));
 
             // Ship chair (crafted from 4 white plasteel and 2 wool or a Create seat, only if Create is present)
@@ -149,6 +151,7 @@ public class VarkinSystemCraftingRecipes {
                                 .unlockedBy("has_white_plasteel_block", InventoryChangeTrigger.TriggerInstance.hasItems(whitePlasteel))
                                 .save(cc);
                     })
+                    .generateAdvancement()
                     .build(consumer, id(color.getName() + "_ship_chair"));
 
             // ---------------------------------
@@ -184,6 +187,7 @@ public class VarkinSystemCraftingRecipes {
                             .requires(VarkinSystemTags.PLASTEEL_CABINETS)
                             .unlockedBy("has_dye", hasDye)
                             .save(cc, id(color.getName() + "_plasteel_cabinet_from_dye")))
+                    .generateAdvancement()
                     .build(consumer, id(color.getName() + "_plasteel_cabinet_from_dye"));
 
             // Ship chair recolor (if Create is present)
@@ -194,6 +198,7 @@ public class VarkinSystemCraftingRecipes {
                             .requires(VarkinSystemTags.SHIP_CHAIRS)
                             .unlockedBy("has_dye", hasDye)
                             .save(cc, id(color.getName() + "_ship_chair_from_dye")))
+                    .generateAdvancement()
                     .build(consumer, id(color.getName() + "_ship_chair_from_dye"));
 
             // Recipe to bulk craft 8 plasteel blocks from one dye
@@ -237,6 +242,7 @@ public class VarkinSystemCraftingRecipes {
                             .requires(concrete)
                             .unlockedBy("has_concrete", InventoryChangeTrigger.TriggerInstance.hasItems(concrete))
                             .save(cc, recipeID))
+                    .generateAdvancement()
                     .build(consumer, recipeID);
         }
     }

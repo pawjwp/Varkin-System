@@ -1,0 +1,183 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_concrete": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:purple_concrete"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "varkin_system:purple_plasteel_block_from_concrete"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          }
+        },
+        "requirements": [
+          [
+            "has_concrete",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "varkin_system:purple_plasteel_block_from_concrete"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "pneumaticcraft"
+              }
+            },
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:tag_empty",
+                "tag": "forge:dusts/steel"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_concrete": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:purple_concrete"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "varkin_system:purple_plasteel_block_from_concrete"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          }
+        },
+        "requirements": [
+          [
+            "has_concrete",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "varkin_system:purple_plasteel_block_from_concrete"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "pneumaticcraft"
+              }
+            },
+            {
+              "type": "forge:tag_empty",
+              "tag": "forge:dusts/steel"
+            },
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:tag_empty",
+                "tag": "forge:dusts/iron"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_concrete": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:purple_concrete"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "varkin_system:purple_plasteel_block_from_concrete"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          }
+        },
+        "requirements": [
+          [
+            "has_concrete",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "varkin_system:purple_plasteel_block_from_concrete"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "pneumaticcraft"
+              }
+            },
+            {
+              "type": "forge:tag_empty",
+              "tag": "forge:dusts/steel"
+            },
+            {
+              "type": "forge:tag_empty",
+              "tag": "forge:dusts/iron"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

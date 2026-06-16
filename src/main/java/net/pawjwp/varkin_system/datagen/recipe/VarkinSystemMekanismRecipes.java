@@ -36,7 +36,6 @@ public class VarkinSystemMekanismRecipes {
                         output
                     ).build(c, id)
                 )
-                .generateAdvancement()
                 .build(consumer, id);
         }
     }

@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "varkin_system:green_ship_chair"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_white_plasteel_block": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "varkin_system:white_plasteel_block"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_white_plasteel_block",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "varkin_system:green_ship_chair"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "create"
+        }
+      ]
+    }
+  ]
+}

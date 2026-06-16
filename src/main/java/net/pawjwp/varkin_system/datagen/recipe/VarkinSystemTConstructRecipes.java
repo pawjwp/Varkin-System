@@ -92,7 +92,6 @@ public class VarkinSystemTConstructRecipes {
         return recipe -> ConditionalRecipe.builder()
                 .addCondition(condition)
                 .addRecipe(recipe)
-                .generateAdvancement()
                 .build(consumer, recipe.getId());
     }
 }
