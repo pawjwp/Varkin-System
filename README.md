@@ -2,7 +2,9 @@
 
 ## About
 
-The Varkin System is an add-on mod for [Ad Astra](https://modrinth.com/mod/ad-astra), adding a new solar system with unique content. The mod is in very early stages at the moment, currently adding supplementary worldgen features while the main ones are in development. The final version will include 4-6 unique planetary bodies.
+### This mod is in _early alpha_ and contains assorted features that do not yet add up to a complete gameplay experience
+
+The Varkin System is primarily an add-on mod for [Ad Astra](https://modrinth.com/mod/ad-astra), adding a new solar system with unique content. The mod is in very early stages at the moment, currently adding some blocks and worldgen features while the main planets are in development. The final version will include 4-6 unique planetary bodies.
 
 1. Icarus, a volcano world
 2. Talos, a dust desert world
@@ -15,13 +17,26 @@ This mod was created for my modpack, [Desolate Planet](https://modrinth.com/modp
 
 ## Completed Features
 
+- Plasteel block set, available in 16 colors per block  
+  - Plasteel blocks, a dyeable concrete-like building block
+    - When PneumaticCraft is present, white plasteel can be crafted with liquid plastic and iron/steel dust
+    - If PneumaticCraft is not present, plasteel can be crafted with concrete and iron/steel dust
+    - A fully vanilla recipe is available if other mods are not present, crafted from concrete and an iron ingot
+  - Plasteel stairs
+  - Plasteel slabs (can be placed vertically)
+  - Plasteel bookshelves (based on vanilla's Chiseled Bookshelves)
+  - Plasteel cabinets (requires Sophisticated Storage to be installed)
+  - Spaceship chairs (requires Create to be installed)
+- Sliding doors (crafted with Ad Astra materials, requires Create to be installed)
 - Lava-loggable crystals for ore collection
   - Configured features to generate clusters of these crystals
   - Detailed integration recipes for the Thermal Series and Tinker's Construct
   - Some simple integration recipes with Create, Mekanism, and EnderIO
+- Remapping system for replacing blocks in-world after specific mods are removed from the game
+- A custom solar system renderer when custom datapacks are present
 - A custom surface rule for generating striations of volcanic rock
 
-Most current features do not function on their own unless implemented via datapacks or via KubeJS. This list will be updated in more detail as more features are implemented.
+Some features do not function on their own unless implemented via datapacks or via KubeJS. This list will be updated in more detail as more features are implemented.
 
 ## Suggestions
 
