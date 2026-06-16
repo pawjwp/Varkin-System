@@ -10,31 +10,37 @@ import net.pawjwp.varkin_system.VarkinSystem;
 
 public class VarkinSystemTags {
 
-    // Block tags
-    public static final TagKey<Block> CRYSTAL_BLOCKS =
-            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "crystal_blocks"));
-    public static final TagKey<Block> CRYSTAL_CLUSTERS =
-            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "crystal_clusters"));
-    public static final TagKey<Block> BUDDING_CRYSTALS =
-            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "budding_crystals"));
-    public static final TagKey<Block> BASE_STONE_ICARUS =
-            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "base_stone_icarus"));
-    public static final TagKey<Block> PLASTEEL_BLOCK =
-            BlockTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_blocks"));
+    // Varkin System block tags
+    public static final TagKey<Block> CRYSTAL_BLOCKS = blockTag(VarkinSystem.MOD_ID, "crystal_blocks");
+    public static final TagKey<Block> CRYSTAL_CLUSTERS = blockTag(VarkinSystem.MOD_ID, "crystal_clusters");
+    public static final TagKey<Block> BUDDING_CRYSTALS = blockTag(VarkinSystem.MOD_ID, "budding_crystals");
+    public static final TagKey<Block> BASE_STONE_ICARUS = blockTag(VarkinSystem.MOD_ID, "base_stone_icarus");
+    public static final TagKey<Block> PLASTEEL_BLOCK = blockTag(VarkinSystem.MOD_ID, "plasteel_blocks");
 
-    // Item tags
-    public static final TagKey<Item> CRYSTAL_SHARDS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "crystal_shards"));
-    public static final TagKey<Item> SHIP_CHAIRS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "ship_chairs"));
-    public static final TagKey<Item> PLASTEEL_BLOCKS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_blocks"));
-    public static final TagKey<Item> PLASTEEL_SLABS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_slabs"));
-    public static final TagKey<Item> PLASTEEL_STAIRS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_stairs"));
-    public static final TagKey<Item> PLASTEEL_BOOKSHELVES =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_bookshelves"));
-    public static final TagKey<Item> PLASTEEL_CABINETS =
-            ItemTags.create(ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "plasteel_cabinets"));
+    // Varkin System item tags
+    public static final TagKey<Item> CRYSTAL_SHARDS = itemTag(VarkinSystem.MOD_ID, "crystal_shards");
+    public static final TagKey<Item> SHIP_CHAIRS = itemTag(VarkinSystem.MOD_ID, "ship_chairs");
+    public static final TagKey<Item> PLASTEEL_BLOCKS = itemTag(VarkinSystem.MOD_ID, "plasteel_blocks");
+    public static final TagKey<Item> PLASTEEL_SLABS = itemTag(VarkinSystem.MOD_ID, "plasteel_slabs");
+    public static final TagKey<Item> PLASTEEL_STAIRS = itemTag(VarkinSystem.MOD_ID, "plasteel_stairs");
+    public static final TagKey<Item> PLASTEEL_BOOKSHELVES = itemTag(VarkinSystem.MOD_ID, "plasteel_bookshelves");
+    public static final TagKey<Item> PLASTEEL_CABINETS = itemTag(VarkinSystem.MOD_ID, "plasteel_cabinets");
+
+    // Forge common tags
+    public static final TagKey<Block> FORGE_STORAGE_BLOCKS_PLASTEEL = blockTag("forge", "storage_blocks/plasteel");
+    public static final TagKey<Item> FORGE_DUSTS_STEEL = itemTag("forge", "dusts/steel");
+    public static final TagKey<Item> FORGE_DUSTS_IRON = itemTag("forge", "dusts/iron");
+
+    // External compat tags
+    public static final TagKey<Block> DESOLATE_PLANET_PLASTEEL = blockTag("desolate_planet", "plasteel_block");
+    public static final TagKey<Block> QUARK_NON_DOUBLE_DOOR = blockTag("quark", "non_double_door");
+
+    // Helper functions
+    private static TagKey<Block> blockTag(String namespace, String path) {
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(namespace, path));
+    }
+
+    private static TagKey<Item> itemTag(String namespace, String path) {
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(namespace, path));
+    }
 }

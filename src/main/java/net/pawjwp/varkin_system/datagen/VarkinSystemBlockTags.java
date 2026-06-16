@@ -51,7 +51,7 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
         }
 
         // Stop Quark from interfering with double door opening
-        var nonDoubleDoorTag = this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("quark", "non_double_door")));
+        var nonDoubleDoorTag = this.tag(VarkinSystemTags.QUARK_NON_DOUBLE_DOOR);
         for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
             nonDoubleDoorTag.add(door.get());
         }
@@ -63,8 +63,8 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
 
         for (RegistryObject<Block> block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             this.tag(VarkinSystemTags.PLASTEEL_BLOCK).add(block.get());
-            this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/plasteel"))).add(block.get());
-            this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("desolate_planet", "plasteel_block"))).add(block.get());
+            this.tag(VarkinSystemTags.FORGE_STORAGE_BLOCKS_PLASTEEL).add(block.get());
+            this.tag(VarkinSystemTags.DESOLATE_PLANET_PLASTEEL).add(block.get());
         }
 
         var slabsTag = this.tag(BlockTags.SLABS);

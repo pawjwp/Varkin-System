@@ -7,7 +7,6 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
@@ -221,18 +220,18 @@ public class VarkinSystemCraftingRecipes {
             Item concrete = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("minecraft", color.getName() + "_concrete"));
             ResourceLocation recipeID = id(color.getName() + "_plasteel_block_from_concrete");
             ICondition noPneumaticCraft = new NotCondition(new ModLoadedCondition("pneumaticcraft"));
-            ICondition noSteelDust = new TagEmptyCondition("forge:dusts/steel");
-            ICondition noIronDust = new TagEmptyCondition("forge:dusts/iron");
+            ICondition noSteelDust = new TagEmptyCondition(VarkinSystemTags.FORGE_DUSTS_STEEL.location());
+            ICondition noIronDust = new TagEmptyCondition(VarkinSystemTags.FORGE_DUSTS_IRON.location());
             ConditionalRecipe.builder()
                     .addCondition(new AndCondition(noPneumaticCraft, new NotCondition(noSteelDust)))
                     .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
-                            .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/steel")))
+                            .requires(VarkinSystemTags.FORGE_DUSTS_STEEL)
                             .requires(concrete)
                             .unlockedBy("has_concrete", InventoryChangeTrigger.TriggerInstance.hasItems(concrete))
                             .save(cc, recipeID))
                     .addCondition(new AndCondition(noPneumaticCraft, noSteelDust, new NotCondition(noIronDust)))
                     .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
-                            .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/iron")))
+                            .requires(VarkinSystemTags.FORGE_DUSTS_IRON)
                             .requires(concrete)
                             .unlockedBy("has_concrete", InventoryChangeTrigger.TriggerInstance.hasItems(concrete))
                             .save(cc, recipeID))
