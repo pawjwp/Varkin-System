@@ -7,6 +7,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
@@ -14,7 +15,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.common.crafting.conditions.AndCondition;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
+import net.minecraftforge.common.crafting.conditions.TagEmptyCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
@@ -200,6 +205,39 @@ public class VarkinSystemCraftingRecipes {
                     .define('D', DyeItem.byColor(color))
                     .unlockedBy("has_plasteel_block", InventoryChangeTrigger.TriggerInstance.hasItems(block))
                     .save(consumer, id(color.getName() + "_plasteel_block_from_bulk_dye"));
+
+            // ----------------------
+            // Other Plasteel Recipes
+            // ----------------------
+
+            // Plasteel recipe when PneumaticCraft isn't installed
+            // Returns 2 plasteel blocks from a concrete block and some kind of metal
+            // The item used as the metal will be steel dust if possible, falling back on, iron dust or an iron ingot if needed
+            Item concrete = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("minecraft", color.getName() + "_concrete"));
+            ResourceLocation recipeID = id(color.getName() + "_plasteel_block_from_concrete");
+            ICondition noPneumaticCraft = new NotCondition(new ModLoadedCondition("pneumaticcraft"));
+            ICondition noSteelDust = new TagEmptyCondition("forge:dusts/steel");
+            ICondition noIronDust = new TagEmptyCondition("forge:dusts/iron");
+            ConditionalRecipe.builder()
+                    .addCondition(new AndCondition(noPneumaticCraft, new NotCondition(noSteelDust)))
+                    .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
+                            .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/steel")))
+                            .requires(concrete)
+                            .unlockedBy("has_concrete", InventoryChangeTrigger.TriggerInstance.hasItems(concrete))
+                            .save(cc, recipeID))
+                    .addCondition(new AndCondition(noPneumaticCraft, noSteelDust, new NotCondition(noIronDust)))
+                    .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
+                            .requires(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/iron")))
+                            .requires(concrete)
+                            .unlockedBy("has_concrete", InventoryChangeTrigger.TriggerInstance.hasItems(concrete))
+                            .save(cc, recipeID))
+                    .addCondition(new AndCondition(noPneumaticCraft, noSteelDust, noIronDust))
+                    .addRecipe(cc -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
+                            .requires(Tags.Items.INGOTS_IRON)
+                            .requires(concrete)
+                            .unlockedBy("has_concrete", InventoryChangeTrigger.TriggerInstance.hasItems(concrete))
+                            .save(cc, recipeID))
+                    .build(consumer, recipeID);
         }
     }
 

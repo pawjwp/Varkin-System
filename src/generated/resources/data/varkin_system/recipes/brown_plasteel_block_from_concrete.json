@@ -1,0 +1,127 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "pneumaticcraft"
+              }
+            },
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:tag_empty",
+                "tag": "forge:dusts/steel"
+              }
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "ingredients": [
+          {
+            "tag": "forge:dusts/steel"
+          },
+          {
+            "item": "minecraft:brown_concrete"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "varkin_system:brown_plasteel_block"
+        }
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "pneumaticcraft"
+              }
+            },
+            {
+              "type": "forge:tag_empty",
+              "tag": "forge:dusts/steel"
+            },
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:tag_empty",
+                "tag": "forge:dusts/iron"
+              }
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "ingredients": [
+          {
+            "tag": "forge:dusts/iron"
+          },
+          {
+            "item": "minecraft:brown_concrete"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "varkin_system:brown_plasteel_block"
+        }
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "pneumaticcraft"
+              }
+            },
+            {
+              "type": "forge:tag_empty",
+              "tag": "forge:dusts/steel"
+            },
+            {
+              "type": "forge:tag_empty",
+              "tag": "forge:dusts/iron"
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "building",
+        "ingredients": [
+          {
+            "tag": "forge:ingots/iron"
+          },
+          {
+            "item": "minecraft:brown_concrete"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "varkin_system:brown_plasteel_block"
+        }
+      }
+    }
+  ]
+}
