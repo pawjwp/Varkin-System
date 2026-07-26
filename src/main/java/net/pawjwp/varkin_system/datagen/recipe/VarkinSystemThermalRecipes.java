@@ -93,12 +93,13 @@ public class VarkinSystemThermalRecipes implements DataProvider {
                 }, 4000, modLoaded("thermal")),
                 "compat/thermal/centrifuge/galena_dust"));
 
-        futures.add(saveRecipe(cache, buildCentrifugeRecipe("electrum", 2,
+        futures.add(saveRecipe(cache, buildCentrifugeRecipe("petrovskaite", 2,
                 new ResultEntry[]{
                         result("thermal:gold_dust", 1, -1),
-                        result("thermal:silver_dust", 1, -1)
+                        result("thermal:silver_dust", 1, -1),
+                        result("thermal:sulfur_dust", 2, -1)
                 }, 2000, modLoaded("thermal")),
-                "compat/thermal/centrifuge/electrum_dust"));
+                "compat/thermal/centrifuge/petrovskaite_dust"));
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }

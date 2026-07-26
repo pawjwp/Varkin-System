@@ -42,8 +42,8 @@ public class VarkinSystemTConstructRecipes {
         crystalMelting(tconConsumer, "galena", "tconstruct:molten_lead", INGOT_SIZE,
                 "tconstruct:molten_silver", NUGGET_SIZE * 3);
 
-        // Electrum melts into molten electrum, no byproduct
-        crystalMelting(tconConsumer, "electrum", "tconstruct:molten_electrum", INGOT_SIZE,
+        // Petrovskaite melts into molten electrum, no byproduct
+        crystalMelting(tconConsumer, "petrovskaite", "tconstruct:molten_electrum", INGOT_SIZE,
                 null, 0);
     }
 

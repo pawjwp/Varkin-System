@@ -149,7 +149,7 @@ public class VarkinSystemBlocks {
     public static final CrystalSet PENTLANDITE = registerCrystalSet("pentlandite", MapColor.WOOD, 1.5F);
     public static final CrystalSet STANNITE = registerCrystalSet("stannite", MapColor.COLOR_GRAY, 1.5F);
     public static final CrystalSet GALENA = registerCrystalSet("galena", MapColor.COLOR_GRAY, 1.5F);
-    public static final CrystalSet ELECTRUM = registerCrystalSet("electrum", MapColor.SAND, 1.5F);
+    public static final CrystalSet PETROVSKAITE = registerCrystalSet("petrovskaite", MapColor.SAND, 1.5F);
 
     // All plasteel-derived blocks
     public static final List<RegistryObject<Block>> PLASTEEL_DERIVED_BLOCKS = new ArrayList<>();
