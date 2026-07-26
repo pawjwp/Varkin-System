@@ -10,6 +10,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.item.VarkinSystemItems;
 import net.pawjwp.varkin_system.tag.VarkinSystemTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,5 +75,9 @@ public class VarkinSystemItemTags extends ItemTagsProvider {
             this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/" + set.name())))
                     .add(set.dust().get());
         }
+
+        // forge:dusts/netherite_scrap
+        this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/netherite_scrap")))
+                .add(VarkinSystemItems.NETHERITE_SCRAP_DUST.get());
     }
 }

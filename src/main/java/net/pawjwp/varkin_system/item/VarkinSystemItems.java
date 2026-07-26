@@ -24,6 +24,8 @@ public class VarkinSystemItems {
 
 
     // Item registry
+    public static final RegistryObject<Item> NETHERITE_SCRAP_DUST = registerWithTab("netherite_scrap_dust",
+            () -> new Item(new Item.Properties().fireResistant()));
 
 
     public static void register(IEventBus eventBus) {
