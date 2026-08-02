@@ -28,8 +28,10 @@ public class VarkinSystemTags {
 
     // Forge common tags
     public static final TagKey<Block> FORGE_STORAGE_BLOCKS_PLASTEEL = blockTag("forge", "storage_blocks/plasteel");
+    public static final TagKey<Item> FORGE_STORAGE_BLOCKS_PLASTEEL_ITEM = itemTag("forge", "storage_blocks/plasteel");
     public static final TagKey<Item> FORGE_DUSTS_STEEL = itemTag("forge", "dusts/steel");
     public static final TagKey<Item> FORGE_DUSTS_IRON = itemTag("forge", "dusts/iron");
+    public static final TagKey<Item> FORGE_DUSTS_NETHERITE_SCRAP = itemTag("forge", "dusts/netherite_scrap");
 
     // External compat tags
     public static final TagKey<Block> DESOLATE_PLANET_PLASTEEL = blockTag("desolate_planet", "plasteel_block");

@@ -4,8 +4,10 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -29,6 +31,7 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
         var crystalBlocksTag = this.tag(VarkinSystemTags.CRYSTAL_BLOCKS);
         var clusterTag = this.tag(VarkinSystemTags.CRYSTAL_CLUSTERS);
         var buddingTag = this.tag(VarkinSystemTags.BUDDING_CRYSTALS);
+        var storageBlocksTag = this.tag(Tags.Blocks.STORAGE_BLOCKS);
 
         for (CrystalSet set : VarkinSystemBlocks.CRYSTAL_SETS) {
             pickaxeTag.add(
@@ -46,13 +49,18 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             buddingTag.add(set.budding().get());
 
             // forge:storage_blocks/CRYSTALNAME (block tag)
-            this.tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name())))
-                    .add(set.storageBlock().get());
+            TagKey<Block> crystalStorageTag = BlockTags.create(
+                    ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name()));
+            this.tag(crystalStorageTag).add(set.storageBlock().get());
+            storageBlocksTag.addTag(crystalStorageTag);
         }
 
-        // Stop Quark from interfering with double door opening
+        // Stop Quark from interfering with double door opening, add pickaxe minable and door tags
+        var doorsTag = this.tag(BlockTags.DOORS);
         var nonDoubleDoorTag = this.tag(VarkinSystemTags.QUARK_NON_DOUBLE_DOOR);
         for (RegistryObject<Block> door : VarkinSystemBlocks.SLIDING_DOORS) {
+            pickaxeTag.add(door.get());
+            doorsTag.add(door.get());
             nonDoubleDoorTag.add(door.get());
         }
 
@@ -66,6 +74,7 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
             this.tag(VarkinSystemTags.FORGE_STORAGE_BLOCKS_PLASTEEL).add(block.get());
             this.tag(VarkinSystemTags.DESOLATE_PLANET_PLASTEEL).add(block.get());
         }
+        storageBlocksTag.addTag(VarkinSystemTags.FORGE_STORAGE_BLOCKS_PLASTEEL);
 
         var slabsTag = this.tag(BlockTags.SLABS);
         for (RegistryObject<Block> slab : VarkinSystemBlocks.PLASTEEL_SLABS) {

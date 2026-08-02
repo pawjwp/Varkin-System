@@ -5,7 +5,10 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
@@ -25,15 +28,25 @@ public class VarkinSystemItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        var storageBlocksTag = this.tag(Tags.Items.STORAGE_BLOCKS);
+
         var shipChairsTag = this.tag(VarkinSystemTags.SHIP_CHAIRS);
         for (var chair : VarkinSystemBlocks.SHIP_CHAIRS) {
             shipChairsTag.add(chair.get().asItem());
         }
 
+        var doorsTag = this.tag(ItemTags.DOORS);
+        for (var door : VarkinSystemBlocks.SLIDING_DOORS) {
+            doorsTag.add(door.get().asItem());
+        }
+
         var plasteelBlocksTag = this.tag(VarkinSystemTags.PLASTEEL_BLOCKS);
+        var plasteelStorageTag = this.tag(VarkinSystemTags.FORGE_STORAGE_BLOCKS_PLASTEEL_ITEM);
         for (var block : VarkinSystemBlocks.PLASTEEL_BLOCKS) {
             plasteelBlocksTag.add(block.get().asItem());
+            plasteelStorageTag.add(block.get().asItem());
         }
+        storageBlocksTag.addTag(VarkinSystemTags.FORGE_STORAGE_BLOCKS_PLASTEEL_ITEM);
 
         var slabsTag = this.tag(ItemTags.SLABS);
         var plasteelSlabsTag = this.tag(VarkinSystemTags.PLASTEEL_SLABS);
@@ -60,24 +73,29 @@ public class VarkinSystemItemTags extends ItemTagsProvider {
         }
 
         var crystalShardsTag = this.tag(VarkinSystemTags.CRYSTAL_SHARDS);
+        var gemsTag = this.tag(Tags.Items.GEMS);
+        var dustsTag = this.tag(Tags.Items.DUSTS);
         for (CrystalSet set : VarkinSystemBlocks.CRYSTAL_SETS) {
             crystalShardsTag.add(set.shard().get());
 
             // forge:gems/CRYSTALNAME
-            this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "gems/" + set.name())))
-                    .add(set.shard().get());
+            TagKey<Item> gemTag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "gems/" + set.name()));
+            this.tag(gemTag).add(set.shard().get());
+            gemsTag.addTag(gemTag);
 
             // forge:storage_blocks/CRYSTALNAME
-            this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name())))
-                    .add(set.storageBlockItem().get());
+            TagKey<Item> storageBlockTag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "storage_blocks/" + set.name()));
+            this.tag(storageBlockTag).add(set.storageBlockItem().get());
+            storageBlocksTag.addTag(storageBlockTag);
 
             // forge:dusts/CRYSTALNAME
-            this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/" + set.name())))
-                    .add(set.dust().get());
+            TagKey<Item> dustTag = ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/" + set.name()));
+            this.tag(dustTag).add(set.dust().get());
+            dustsTag.addTag(dustTag);
         }
 
         // forge:dusts/netherite_scrap
-        this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "dusts/netherite_scrap")))
-                .add(VarkinSystemItems.NETHERITE_SCRAP_DUST.get());
+        this.tag(VarkinSystemTags.FORGE_DUSTS_NETHERITE_SCRAP).add(VarkinSystemItems.NETHERITE_SCRAP_DUST.get());
+        dustsTag.addTag(VarkinSystemTags.FORGE_DUSTS_NETHERITE_SCRAP);
     }
 }
