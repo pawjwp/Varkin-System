@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.item.VarkinSystemItems;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -99,6 +100,14 @@ public class VarkinSystemThermalRecipes implements DataProvider {
                         result("thermal:sulfur_dust", 2, -1)
                 }, 4000, modLoaded("thermal")),
                 "compat/thermal/centrifuge/petrovskaite_dust"));
+
+        futures.add(saveRecipe(cache, buildCentrifugeRecipe("phlogistite", 2,
+                new ResultEntry[]{
+                        result("minecraft:glowstone_dust", 2, -1),
+                        result(VarkinSystem.MOD_ID + ":" + VarkinSystemItems.NETHERITE_SCRAP_DUST.get(), 1, -1),
+                        result("thermal:sulfur_dust", 2, -1)
+                }, 4000, modLoaded("thermal")),
+                "compat/thermal/centrifuge/phlogistite_dust"));
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }

@@ -45,6 +45,10 @@ public class VarkinSystemTConstructRecipes {
         // Petrovskaite melts into molten electrum, no byproduct
         crystalMelting(tconConsumer, "petrovskaite", "tconstruct:molten_electrum", INGOT_SIZE,
                 null, 0);
+
+        // Phlogistite melts into debris, no byproduct
+        crystalMelting(tconConsumer, "phlogistite", "tconstruct:molten_debris", INGOT_SIZE,
+                null, 0);
     }
 
     private static void crystalMelting(Consumer<FinishedRecipe> consumer, String crystalName,

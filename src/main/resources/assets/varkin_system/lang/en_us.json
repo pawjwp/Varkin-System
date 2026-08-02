@@ -161,6 +161,15 @@
   "item.varkin_system.petrovskaite_crystal_shard": "Petrovskaite Crystal Shard",
   "item.varkin_system.petrovskaite_dust": "Petrovskaite Dust",
 
+  "block.varkin_system.phlogistite_crystal_block": "Phlogistite Crystal Block",
+  "block.varkin_system.phlogistite_crystal_budding": "Budding Phlogistite Crystal",
+  "block.varkin_system.phlogistite_crystal_small": "Small Phlogistite Crystal",
+  "block.varkin_system.phlogistite_crystal_medium": "Medium Phlogistite Crystal",
+  "block.varkin_system.phlogistite_crystal_large": "Large Phlogistite Crystal",
+  "block.varkin_system.phlogistite_crystal_cluster": "Phlogistite Crystal Cluster",
+  "item.varkin_system.phlogistite_crystal_shard": "Phlogistite Crystal Shard",
+  "item.varkin_system.phlogistite_dust": "Phlogistite Dust",
+
   "item.varkin_system.netherite_scrap_dust": "Netherite Scrap Dust",
 
   "solar_system.desolate_planet.varkin_system": "Varkin System",

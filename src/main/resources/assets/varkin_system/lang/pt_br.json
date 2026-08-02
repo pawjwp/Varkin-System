@@ -161,6 +161,15 @@
   "item.varkin_system.petrovskaite_crystal_shard": "Fragmento de Cristal de Petrovskaíta",
   "item.varkin_system.petrovskaite_dust": "Pó de Petrovskaíta",
 
+  "block.varkin_system.phlogistite_crystal_block": "Bloco de Cristal de Flogistita",
+  "block.varkin_system.phlogistite_crystal_budding": "Cristal de Flogistita Brotante",
+  "block.varkin_system.phlogistite_crystal_small": "Pequeno Cristal de Flogistita",
+  "block.varkin_system.phlogistite_crystal_medium": "Cristal Médio de Flogistita",
+  "block.varkin_system.phlogistite_crystal_large": "Grande Cristal de Flogistita",
+  "block.varkin_system.phlogistite_crystal_cluster": "Aglomerado de Cristal de Flogistita",
+  "item.varkin_system.phlogistite_crystal_shard": "Fragmento de Cristal de Flogistita",
+  "item.varkin_system.phlogistite_dust": "Pó de Flogistita",
+
   "item.varkin_system.netherite_scrap_dust": "Pó de Sucata de Netherita",
 
   "solar_system.desolate_planet.varkin_system": "Sistema Varkin",
