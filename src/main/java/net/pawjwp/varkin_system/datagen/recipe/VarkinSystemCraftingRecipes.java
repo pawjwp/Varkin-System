@@ -5,6 +5,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -23,6 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.item.VarkinSystemItems;
 import net.pawjwp.varkin_system.tag.VarkinSystemTags;
 
 import java.util.function.Consumer;
@@ -49,7 +51,16 @@ public class VarkinSystemCraftingRecipes {
                             set.name() + "_crystal_shard_from_" + set.name() + "_block"));
         }
 
-
+        // Netherite scrap dust cooks into netherite scrap
+        var hasNetheriteScrapDust = InventoryChangeTrigger.TriggerInstance.hasItems(VarkinSystemItems.NETHERITE_SCRAP_DUST.get());
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(VarkinSystemTags.FORGE_DUSTS_NETHERITE_SCRAP),
+                        RecipeCategory.MISC, Items.NETHERITE_SCRAP, 0.0F, 200)
+                .unlockedBy("has_netherite_scrap_dust", hasNetheriteScrapDust)
+                .save(consumer, id("netherite_scrap_from_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(VarkinSystemTags.FORGE_DUSTS_NETHERITE_SCRAP),
+                        RecipeCategory.MISC, Items.NETHERITE_SCRAP, 0.0F, 100)
+                .unlockedBy("has_netherite_scrap_dust", hasNetheriteScrapDust)
+                .save(consumer, id("netherite_scrap_from_blasting"));
 
         // Sliding doors cost 4 plating and 2 glass to make 2 doors
         // All require Ad Astra and Create

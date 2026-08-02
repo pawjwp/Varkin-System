@@ -5,9 +5,11 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.item.VarkinSystemItems;
 
 import java.util.function.Consumer;
 
@@ -25,5 +27,14 @@ public class VarkinSystemCreateRecipes {
                 .whenModLoaded("create")
                 .build(consumer);
         }
+
+        // Netherite scrap mills into dust
+        new ProcessingRecipeBuilder<>(MillingRecipe::new,
+                ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID, "netherite_scrap_milling"))
+            .require(Items.NETHERITE_SCRAP)
+            .output(VarkinSystemItems.NETHERITE_SCRAP_DUST.get())
+            .duration(200)
+            .whenModLoaded("create")
+            .build(consumer);
     }
 }

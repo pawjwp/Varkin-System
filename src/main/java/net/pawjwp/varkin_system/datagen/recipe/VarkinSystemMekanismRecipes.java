@@ -8,11 +8,13 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.pawjwp.varkin_system.VarkinSystem;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
+import net.pawjwp.varkin_system.item.VarkinSystemItems;
 
 import java.util.function.Consumer;
 
@@ -38,5 +40,19 @@ public class VarkinSystemMekanismRecipes {
                 )
                 .build(consumer, id);
         }
+
+        // Netherite scrap crushes into dust
+        ResourceLocation netheriteScrapId = ResourceLocation.fromNamespaceAndPath(VarkinSystem.MOD_ID,
+                "compat/mekanism/netherite_scrap_crushing");
+
+        ConditionalRecipe.builder()
+            .addCondition(new ModLoadedCondition("mekanism"))
+            .addRecipe(c ->
+                ItemStackToItemStackRecipeBuilder.crushing(
+                    IngredientCreatorAccess.item().from(Items.NETHERITE_SCRAP),
+                    new ItemStack(VarkinSystemItems.NETHERITE_SCRAP_DUST.get())
+                ).build(c, netheriteScrapId)
+            )
+            .build(consumer, netheriteScrapId);
     }
 }

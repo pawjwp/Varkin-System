@@ -10,6 +10,7 @@ import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.pawjwp.varkin_system.VarkinSystem;
+import net.pawjwp.varkin_system.tag.VarkinSystemTags;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
 
 import java.util.function.Consumer;
@@ -49,6 +50,12 @@ public class VarkinSystemTConstructRecipes {
         // Phlogistite melts into debris, no byproduct
         crystalMelting(tconConsumer, "phlogistite", "tconstruct:molten_debris", INGOT_SIZE,
                 null, 0);
+
+        // Netherite scrap dust melts into debris
+        MeltingRecipeBuilder.melting(Ingredient.of(VarkinSystemTags.FORGE_DUSTS_NETHERITE_SCRAP),
+                        new FluidStack(ForgeRegistries.FLUIDS.getValue(
+                                ResourceLocation.parse("tconstruct:molten_debris")), INGOT_SIZE), 1.0f)
+                .save(tconConsumer, location("compat/tconstruct/netherite_scrap/dust"));
     }
 
     private static void crystalMelting(Consumer<FinishedRecipe> consumer, String crystalName,
