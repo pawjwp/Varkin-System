@@ -1,6 +1,7 @@
-// 1.20.1	2026-08-02T09:32:08.5757436	Varkin System EnderIO Recipes
+// 1.20.1	2026-08-02T17:43:27.7770226	Varkin System EnderIO Recipes
 193c70cac48fbdcb34e4119fc5f53b2417ca31b8 data/varkin_system/recipes/compat/enderio/chalcopyrite_crystal_sag_milling.json
 8830698c639cb500ae1a1c3e6cfb9d84ab79f833 data/varkin_system/recipes/compat/enderio/galena_crystal_sag_milling.json
+270b74bfad3acfc9cb60099a0ffb9bb5f555f4db data/varkin_system/recipes/compat/enderio/netherite_scrap_sag_milling.json
 c5d5087365aacd66deedb67f69c2aee9d6a2b6c6 data/varkin_system/recipes/compat/enderio/pentlandite_crystal_sag_milling.json
 63ed99511efef2857944b863411b6ed4f3fff46b data/varkin_system/recipes/compat/enderio/petrovskaite_crystal_sag_milling.json
 4fb029679624dd98cef4344d765a5b19fd88b7cb data/varkin_system/recipes/compat/enderio/phlogistite_crystal_sag_milling.json

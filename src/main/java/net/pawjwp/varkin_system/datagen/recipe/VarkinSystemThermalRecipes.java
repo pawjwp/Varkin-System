@@ -31,7 +31,8 @@ public class VarkinSystemThermalRecipes implements DataProvider {
             String name = set.name();
 
             // Pulverizer crushes gem to dust
-            futures.add(saveRecipe(cache, buildPulverizerRecipe(name),
+            futures.add(saveRecipe(cache, buildPulverizerRecipe("tag", "forge:gems/" + name,
+                            "varkin_system:" + name + "_dust", 1.5f),
                     "compat/thermal/pulverizer/" + name + "_crystal"));
 
             // Crystallizer grows dust to gem with lava
@@ -42,6 +43,11 @@ public class VarkinSystemThermalRecipes implements DataProvider {
             futures.add(saveRecipe(cache, buildLapidaryFuelRecipe(name),
                     "compat/thermal/fuel/lapidary/" + name + "_crystal"));
         }
+
+        // Pulverizer crushes netherite scrap to dust
+        futures.add(saveRecipe(cache, buildPulverizerRecipe("item", "minecraft:netherite_scrap",
+                        "varkin_system:netherite_scrap_dust", 1.0f),
+                "compat/thermal/pulverizer/netherite_scrap"));
 
         // Centrifuge recipes
         futures.add(saveRecipe(cache, buildCentrifugeRecipe("chalcopyrite", 2,
@@ -114,17 +120,18 @@ public class VarkinSystemThermalRecipes implements DataProvider {
 
     // Recipe builders
 
-    private JsonObject buildPulverizerRecipe(String crystalName) {
+    // The ingredient key is either "tag" or "item", matching how the ingredient id is written.
+    private JsonObject buildPulverizerRecipe(String ingredientKey, String ingredientId, String resultItem, float chance) {
         JsonObject json = new JsonObject();
         addConditions(json, modLoaded("thermal"));
         json.addProperty("type", "thermal:pulverizer");
         JsonObject ingredient = new JsonObject();
-        ingredient.addProperty("tag", "forge:gems/" + crystalName);
+        ingredient.addProperty(ingredientKey, ingredientId);
         json.add("ingredient", ingredient);
         JsonArray resultArray = new JsonArray();
         JsonObject resultObj = new JsonObject();
-        resultObj.addProperty("item", "varkin_system:" + crystalName + "_dust");
-        resultObj.addProperty("chance", 1.5);
+        resultObj.addProperty("item", resultItem);
+        resultObj.addProperty("chance", chance);
         resultArray.add(resultObj);
         json.add("result", resultArray);
         return json;

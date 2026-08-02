@@ -28,14 +28,22 @@ public class VarkinSystemEnderIORecipes implements DataProvider {
 
         for (CrystalSet set : VarkinSystemBlocks.CRYSTAL_SETS) {
             String name = set.name();
-            futures.add(saveRecipe(cache, buildSagMillRecipe(name),
+            futures.add(saveRecipe(cache, buildSagMillRecipe("tag", "forge:gems/" + name,
+                            "varkin_system:" + name + "_dust", 0.5f),
                     "compat/enderio/" + name + "_crystal_sag_milling"));
         }
+
+        // Netherite scrap crushes into dust
+        futures.add(saveRecipe(cache, buildSagMillRecipe("item", "minecraft:netherite_scrap",
+                        "varkin_system:netherite_scrap_dust", 0f),
+                "compat/enderio/netherite_scrap_sag_milling"));
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
-    private JsonObject buildSagMillRecipe(String crystalName) {
+    // Input key is either a tag or item
+    // Bonus chance of zero skips the second output
+    private JsonObject buildSagMillRecipe(String inputKey, String inputId, String resultItem, float bonusChance) {
         JsonObject json = new JsonObject();
 
         // Conditions
@@ -50,7 +58,7 @@ public class VarkinSystemEnderIORecipes implements DataProvider {
         json.addProperty("energy", 2400);
 
         JsonObject input = new JsonObject();
-        input.addProperty("tag", "forge:gems/" + crystalName);
+        input.addProperty(inputKey, inputId);
         json.add("input", input);
 
         JsonArray outputs = new JsonArray();
@@ -58,20 +66,22 @@ public class VarkinSystemEnderIORecipes implements DataProvider {
         // Guaranteed 1 dust
         JsonObject primaryOutput = new JsonObject();
         JsonObject primaryItem = new JsonObject();
-        primaryItem.addProperty("item", "varkin_system:" + crystalName + "_dust");
+        primaryItem.addProperty("item", resultItem);
         primaryOutput.add("item", primaryItem);
         primaryOutput.addProperty("chance", 1.0);
         primaryOutput.addProperty("optional", false);
         outputs.add(primaryOutput);
 
-        // 50% bonus dust, boostable by grinding balls
-        JsonObject bonusOutput = new JsonObject();
-        JsonObject bonusItem = new JsonObject();
-        bonusItem.addProperty("item", "varkin_system:" + crystalName + "_dust");
-        bonusOutput.add("item", bonusItem);
-        bonusOutput.addProperty("chance", 0.5);
-        bonusOutput.addProperty("optional", false);
-        outputs.add(bonusOutput);
+        // Bonus result, boostable by grinding balls
+        if (bonusChance > 0) {
+            JsonObject bonusOutput = new JsonObject();
+            JsonObject bonusItem = new JsonObject();
+            bonusItem.addProperty("item", resultItem);
+            bonusOutput.add("item", bonusItem);
+            bonusOutput.addProperty("chance", bonusChance);
+            bonusOutput.addProperty("optional", false);
+            outputs.add(bonusOutput);
+        }
 
         json.add("outputs", outputs);
 

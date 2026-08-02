@@ -1,4 +1,4 @@
-// 1.20.1	2026-08-02T09:38:13.0506356	Varkin System Thermal Recipes
+// 1.20.1	2026-08-02T17:43:27.7780245	Varkin System Thermal Recipes
 c7a5aa74d00660ec030eace1c47e8f21da8d1ce6 data/varkin_system/recipes/compat/thermal/centrifuge/chalcopyrite_dust.json
 30ed15aeab250ac5528976e148f38fe658f4efa0 data/varkin_system/recipes/compat/thermal/centrifuge/galena_dust.json
 1b0286c2ce7779f3df0fc47c56737a6abb2b2bbf data/varkin_system/recipes/compat/thermal/centrifuge/pentlandite_dust.json
@@ -23,6 +23,7 @@ c4b57d782845e339dd02764d99834894dc4d38ec data/varkin_system/recipes/compat/therm
 3a85050a9f4b578b7b17f3845f7020d68fb0a9a9 data/varkin_system/recipes/compat/thermal/fuel/lapidary/stannite_crystal.json
 c4b8cd5b9209099fc44a707f85ae4a6fa1209c16 data/varkin_system/recipes/compat/thermal/pulverizer/chalcopyrite_crystal.json
 7858a52a19074a732f169b9bccb110a9dff1e40b data/varkin_system/recipes/compat/thermal/pulverizer/galena_crystal.json
+4933125959ec75ccd87fa9e0d6b7c99f1c2a284c data/varkin_system/recipes/compat/thermal/pulverizer/netherite_scrap.json
 8c90d2e236a71b4a1efaabce4bc626e8dbe45dd0 data/varkin_system/recipes/compat/thermal/pulverizer/pentlandite_crystal.json
 71fd9ae95a5de63d72bc098cad99c07efc9b25ab data/varkin_system/recipes/compat/thermal/pulverizer/petrovskaite_crystal.json
 99d5a1cf2aec3f7c78d4ef96b7266e96f0632c24 data/varkin_system/recipes/compat/thermal/pulverizer/phlogistite_crystal.json

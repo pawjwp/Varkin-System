@@ -1,0 +1,22 @@
+{
+  "type": "enderio:sag_milling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "enderio"
+    }
+  ],
+  "energy": 2400,
+  "input": {
+    "item": "minecraft:netherite_scrap"
+  },
+  "outputs": [
+    {
+      "chance": 1.0,
+      "item": {
+        "item": "varkin_system:netherite_scrap_dust"
+      },
+      "optional": false
+    }
+  ]
+}
