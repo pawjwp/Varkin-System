@@ -10,12 +10,6 @@
       ],
       "recipe": {
         "type": "tconstruct:melting",
-        "byproducts": [
-          {
-            "amount": 30,
-            "fluid": "tconstruct:molten_silver"
-          }
-        ],
         "ingredient": {
           "tag": "forge:dusts/galena"
         },

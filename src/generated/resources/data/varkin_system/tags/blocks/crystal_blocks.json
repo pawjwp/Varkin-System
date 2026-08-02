@@ -20,9 +20,13 @@
     "varkin_system:galena_crystal_medium",
     "varkin_system:galena_crystal_large",
     "varkin_system:galena_crystal_cluster",
-    "varkin_system:electrum_crystal_small",
-    "varkin_system:electrum_crystal_medium",
-    "varkin_system:electrum_crystal_large",
-    "varkin_system:electrum_crystal_cluster"
+    "varkin_system:petrovskaite_crystal_small",
+    "varkin_system:petrovskaite_crystal_medium",
+    "varkin_system:petrovskaite_crystal_large",
+    "varkin_system:petrovskaite_crystal_cluster",
+    "varkin_system:phlogistite_crystal_small",
+    "varkin_system:phlogistite_crystal_medium",
+    "varkin_system:phlogistite_crystal_large",
+    "varkin_system:phlogistite_crystal_cluster"
   ]
 }

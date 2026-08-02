@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#forge:storage_blocks/chalcopyrite",
+    "#forge:storage_blocks/sphalerite",
+    "#forge:storage_blocks/pentlandite",
+    "#forge:storage_blocks/stannite",
+    "#forge:storage_blocks/galena",
+    "#forge:storage_blocks/petrovskaite",
+    "#forge:storage_blocks/phlogistite",
+    "#forge:storage_blocks/plasteel"
+  ]
+}

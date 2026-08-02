@@ -1,0 +1,27 @@
+{
+  "type": "thermal:centrifuge",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
+  "energy": 4000,
+  "ingredient": {
+    "count": 2,
+    "tag": "forge:dusts/phlogistite"
+  },
+  "result": [
+    {
+      "count": 2,
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "varkin_system:netherite_scrap_dust"
+    },
+    {
+      "count": 2,
+      "item": "thermal:sulfur_dust"
+    }
+  ]
+}
