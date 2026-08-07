@@ -9,8 +9,6 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks;
 import net.pawjwp.varkin_system.block.VarkinSystemBlocks.CrystalSet;
@@ -30,7 +28,7 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
             this.dropWhenSilkTouch(set.medium().get());
             this.dropWhenSilkTouch(set.large().get());
 
-            // Cluster drops self with silk touch, otherwise 4 shards with fortune bonus
+            // Cluster drops self with silk touch, otherwise one shard with the fortune bonus ores use
             this.add(set.cluster().get(), createCrystalClusterDrops(set.cluster().get(), set.shard().get()));
 
             // Budding block drops nothing
@@ -60,7 +58,6 @@ public class VarkinSystemBlockLootTables extends BlockLootSubProvider {
     private LootTable.Builder createCrystalClusterDrops(Block cluster, Item shard) {
         return createSilkTouchDispatchTable(cluster,
                 LootItem.lootTableItem(shard)
-                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F)))
                         .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
         );
     }
