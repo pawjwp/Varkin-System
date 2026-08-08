@@ -15,6 +15,10 @@ public class VarkinSystemTags {
     public static final TagKey<Block> CRYSTAL_CLUSTERS = blockTag(VarkinSystem.MOD_ID, "crystal_clusters");
     public static final TagKey<Block> BUDDING_CRYSTALS = blockTag(VarkinSystem.MOD_ID, "budding_crystals");
     public static final TagKey<Block> BASE_STONE_ICARUS = blockTag(VarkinSystem.MOD_ID, "base_stone_icarus");
+    public static final TagKey<Block> BASE_STONE_TALOS = blockTag(VarkinSystem.MOD_ID, "base_stone_talos");
+    public static final TagKey<Block> BASE_STONE_PERDIX = blockTag(VarkinSystem.MOD_ID, "base_stone_perdix");
+    public static final TagKey<Block> BASE_STONE_IAPYX = blockTag(VarkinSystem.MOD_ID, "base_stone_iapyx");
+    public static final TagKey<Block> BASE_STONE_ARIAD = blockTag(VarkinSystem.MOD_ID, "base_stone_ariad");
     public static final TagKey<Block> PLASTEEL_BLOCK = blockTag(VarkinSystem.MOD_ID, "plasteel_blocks");
 
     // Varkin System item tags

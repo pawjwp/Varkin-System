@@ -103,5 +103,26 @@ public class VarkinSystemBlockTags extends BlockTagsProvider {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "rich_slag_block"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("create", "scoria"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("create", "scorchia"));
+
+        this.tag(VarkinSystemTags.BASE_STONE_TALOS)
+                .add(
+                        Blocks.SAND,
+                        Blocks.GRAVEL
+                )
+                .addOptional(ResourceLocation.fromNamespaceAndPath("exdeorum", "dust"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("exdeorum", "crushed_deepslate"));
+
+        this.tag(VarkinSystemTags.BASE_STONE_PERDIX)
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ad_astra", "moon_stone"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ad_astra", "moon_deepslate"));
+
+        this.tag(VarkinSystemTags.BASE_STONE_IAPYX);
+
+        this.tag(VarkinSystemTags.BASE_STONE_ARIAD)
+                .add(
+                        Blocks.ICE,
+                        Blocks.PACKED_ICE
+                )
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ad_astra", "permafrost"));
     }
 }

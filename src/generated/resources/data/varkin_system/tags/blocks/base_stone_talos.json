@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:sand",
+    "minecraft:gravel",
+    {
+      "id": "exdeorum:dust",
+      "required": false
+    },
+    {
+      "id": "exdeorum:crushed_deepslate",
+      "required": false
+    }
+  ]
+}

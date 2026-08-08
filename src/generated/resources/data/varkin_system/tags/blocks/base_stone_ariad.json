@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:ice",
+    "minecraft:packed_ice",
+    {
+      "id": "ad_astra:permafrost",
+      "required": false
+    }
+  ]
+}

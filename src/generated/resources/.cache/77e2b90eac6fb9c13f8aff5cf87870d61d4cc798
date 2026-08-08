@@ -1,4 +1,4 @@
-// 1.20.1	2026-08-02T10:49:51.9422094	Tags for minecraft:block mod id varkin_system
+// 1.20.1	2026-08-07T23:44:55.4253864	Tags for minecraft:block mod id varkin_system
 7b0802bb4a598a7d56ab719621a024bc8a88f4f8 data/desolate_planet/tags/blocks/plasteel_block.json
 3f838a19b99bb65c5370be4a38a49d7c4b4edb1c data/forge/tags/blocks/storage_blocks.json
 eee47ed5c254612c5e36b0c0e5194e954822457b data/forge/tags/blocks/storage_blocks/chalcopyrite.json
@@ -14,7 +14,11 @@ dc90ceee2912f7550b5f09768179b73e05f7bdf9 data/minecraft/tags/blocks/mineable/pic
 4959b48d0fc2aea422c0cf11e96066ebf56bbeba data/minecraft/tags/blocks/slabs.json
 8cd45e4118224707bbbbabe3b9c17ed8b80d3d93 data/minecraft/tags/blocks/stairs.json
 2b2617d5dd24bb29b5d157f79f4910dbdcf621c9 data/quark/tags/blocks/non_double_door.json
+3356f0a7ad5a34333fd5a3ea4c90e98407eefe7c data/varkin_system/tags/blocks/base_stone_ariad.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/varkin_system/tags/blocks/base_stone_iapyx.json
 e680dafd995ae0b615050aa947fbc7af6a7093f8 data/varkin_system/tags/blocks/base_stone_icarus.json
+766753af5acdc1976d7284c89b76cec8aefe723f data/varkin_system/tags/blocks/base_stone_perdix.json
+bbc95cb3ec0b759c5e65ba5fe5e5d40a6ad0f0d5 data/varkin_system/tags/blocks/base_stone_talos.json
 4546f9ad81e58af0e5da5bd0218a2a0dc41968a0 data/varkin_system/tags/blocks/budding_crystals.json
 8fed5d71f67006122ca989063f7e62609eff1b6f data/varkin_system/tags/blocks/crystal_blocks.json
 9d8871478104347a31b065855b8c78732eb19f26 data/varkin_system/tags/blocks/crystal_clusters.json
