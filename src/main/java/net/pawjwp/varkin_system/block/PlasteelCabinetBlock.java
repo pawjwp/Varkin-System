@@ -129,7 +129,8 @@ public class PlasteelCabinetBlock extends StorageBlockBase {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected BlockEntityType<? extends StorageBlockEntity> getBlockEntityType() {
-        return VarkinSystemBlocks.PLASTEEL_CABINET_BE.get();
+        return (BlockEntityType<? extends StorageBlockEntity>) VarkinSystemBlocks.PLASTEEL_CABINET_BE.get();
     }
 }

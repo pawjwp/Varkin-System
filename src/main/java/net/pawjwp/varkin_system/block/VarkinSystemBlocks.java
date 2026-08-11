@@ -1,11 +1,9 @@
 package net.pawjwp.varkin_system.block;
 
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChiseledBookShelfBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
@@ -19,6 +17,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.pawjwp.varkin_system.VarkinSystem;
+import net.pawjwp.varkin_system.compat.CreateCompat;
+import net.pawjwp.varkin_system.compat.SophisticatedStorageCompat;
 import net.pawjwp.varkin_system.item.VarkinSystemItems;
 
 import java.util.ArrayList;
@@ -164,7 +164,7 @@ public class VarkinSystemBlocks {
 
     public static final Map<DyeColor, RegistryObject<Block>> SHIP_CHAIRS_BY_COLOR = new EnumMap<>(DyeColor.class);
 
-    public static RegistryObject<BlockEntityType<PlasteelCabinetBlockEntity>> PLASTEEL_CABINET_BE;
+    public static RegistryObject<? extends BlockEntityType<?>> PLASTEEL_CABINET_BE;
 
     // Ensure plasteel blocks are registered in aesthetic color order
     private static final DyeColor[] ORDERED_DYE_COLORS = {
@@ -187,7 +187,7 @@ public class VarkinSystemBlocks {
     };
 
     // Properties shared by all plasteel-derived blocks
-    private static BlockBehaviour.Properties plasteelProperties(DyeColor color) {
+    public static BlockBehaviour.Properties plasteelProperties(DyeColor color) {
         return BlockBehaviour.Properties.of()
                 .mapColor(color.getMapColor())
                 .sound(SoundType.METAL)
@@ -211,15 +211,12 @@ public class VarkinSystemBlocks {
             PLASTEEL_STAIRS.add(BLOCKS.register(prefix + "_plasteel_stairs", () -> new StairBlock(() -> block.get().defaultBlockState(), plasteelProperties(color))));
             PLASTEEL_SLABS.add(BLOCKS.register(prefix + "_plasteel_slab", () -> new VerticalSlabBlock(plasteelProperties(color))));
             PLASTEEL_BOOKSHELVES.add(BLOCKS.register(prefix + "_plasteel_bookshelf", () -> new ChiseledBookShelfBlock(plasteelProperties(color))));
-            // Conditional derivatives
+            // Conditional derivatives, registered in SophisticatedStorageCompat and CreateCompat
             if (SophisticatedStorage) {
-                PLASTEEL_CABINETS.add(BLOCKS.register(prefix + "_plasteel_cabinet", () -> new PlasteelCabinetBlock(plasteelProperties(color).noOcclusion())));
+                SophisticatedStorageCompat.registerCabinet(color);
             }
             if (Create) {
-                RegistryObject<Block> chair = BLOCKS.register(prefix + "_ship_chair",
-                        () -> new ShipChairBlock(plasteelProperties(color), color));
-                SHIP_CHAIRS.add(chair);
-                SHIP_CHAIRS_BY_COLOR.put(color, chair);
+                CreateCompat.registerShipChair(color);
             }
         }
 
@@ -239,42 +236,17 @@ public class VarkinSystemBlocks {
 
         // Register cabinet block entity
         if (SophisticatedStorage) {
-            PLASTEEL_CABINET_BE = BLOCK_ENTITIES.register("plasteel_cabinet",
-                    () -> BlockEntityType.Builder.of(PlasteelCabinetBlockEntity::new,
-                            PLASTEEL_CABINETS.stream().map(RegistryObject::get).toArray(Block[]::new)).build(null));
+            SophisticatedStorageCompat.registerBlockEntity();
         }
     }
 
-    // Create-style sliding doors
+    // Create-style sliding doors, registered in CreateCompat
     public static final List<RegistryObject<Block>> SLIDING_DOORS = new ArrayList<>();
-    public static RegistryObject<BlockEntityType<SlidingDoorBlockEntity>> SLIDING_DOOR_BE;
-
-    // Properties mirror Ad Astra's sliding doors: iron door behaviour with per-material blast resistance and colour.
-    private static void registerSlidingDoor(String name, float explosionResistance, MapColor color) {
-        RegistryObject<Block> door = BLOCKS.register(name,
-                () -> new SlidingDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_DOOR)
-                        .explosionResistance(explosionResistance)
-                        .mapColor(color),
-                        com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock.TRAIN_SET_TYPE.get(), false));
-        RegistryObject<Item> item = BLOCK_ITEMS.register(name,
-                () -> new BlockItem(door.get(), new Item.Properties()));
-        VarkinSystemItems.CREATIVE_TAB_ITEMS.add(item);
-        SLIDING_DOORS.add(door);
-    }
+    public static RegistryObject<? extends BlockEntityType<?>> SLIDING_DOOR_BE;
 
     static {
         if (ModList.get().isLoaded("create") && ModList.get().isLoaded("ad_astra")) {
-            registerSlidingDoor("iron_sliding_door", 6, MapColor.METAL);
-            registerSlidingDoor("steel_sliding_door", 12, MapColor.COLOR_GRAY);
-            registerSlidingDoor("desh_sliding_door", 9, MapColor.COLOR_ORANGE);
-            registerSlidingDoor("ostrum_sliding_door", 16, MapColor.COLOR_PURPLE);
-            registerSlidingDoor("calorite_sliding_door", 22, MapColor.COLOR_RED);
-
-            SLIDING_DOOR_BE = BLOCK_ENTITIES.register("sliding_door",
-                    () -> BlockEntityType.Builder.of(
-                            (pos, state) -> new SlidingDoorBlockEntity(SLIDING_DOOR_BE.get(), pos, state),
-                            SLIDING_DOORS.stream().map(RegistryObject::get).toArray(Block[]::new)
-                    ).build(null));
+            CreateCompat.registerSlidingDoors();
         }
     }
 

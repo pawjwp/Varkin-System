@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.p3pp3rf1y.sophisticatedstorage.block.SophisticatedOpenersCounter;
 import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockEntity;
@@ -38,8 +39,9 @@ public class PlasteelCabinetBlockEntity extends StorageBlockEntity {
         }
     };
 
+    @SuppressWarnings("unchecked")
     public PlasteelCabinetBlockEntity(BlockPos pos, BlockState state) {
-        super(pos, state, VarkinSystemBlocks.PLASTEEL_CABINET_BE.get());
+        super(pos, state, (BlockEntityType<? extends StorageBlockEntity>) VarkinSystemBlocks.PLASTEEL_CABINET_BE.get());
     }
 
     private void updateOpenBlockState(BlockState state, boolean open) {

@@ -12,7 +12,8 @@ public class SlidingDoorBlock extends com.simibubi.create.content.decoration.sli
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public BlockEntityType<? extends SlidingDoorBlockEntity> getBlockEntityType() {
-        return VarkinSystemBlocks.SLIDING_DOOR_BE.get();
+        return (BlockEntityType<? extends SlidingDoorBlockEntity>) VarkinSystemBlocks.SLIDING_DOOR_BE.get();
     }
 }
