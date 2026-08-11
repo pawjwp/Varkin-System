@@ -7,6 +7,8 @@ import net.minecraft.core.Direction.AxisDirection;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -71,6 +73,30 @@ public class VerticalSlabBlock extends SlabBlock {
                 ? SlabType.BOTTOM : SlabType.TOP;
         boolean waterlogged = pContext.getLevel().getFluidState(blockpos).getType() == Fluids.WATER;
         return this.defaultBlockState().setValue(AXIS, axis).setValue(TYPE, type).setValue(WATERLOGGED, waterlogged);
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRotation) {
+        return setFacing(pState, pRotation.rotate(getFacing(pState)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return setFacing(pState, pMirror.mirror(getFacing(pState)));
+    }
+
+    private static Direction getFacing(BlockState pState) {
+        return Direction.fromAxisAndDirection(pState.getValue(AXIS),
+                pState.getValue(TYPE) == SlabType.BOTTOM ? AxisDirection.NEGATIVE : AxisDirection.POSITIVE);
+    }
+
+    private static BlockState setFacing(BlockState pState, Direction direction) {
+        pState = pState.setValue(AXIS, direction.getAxis());
+        if (pState.getValue(TYPE) == SlabType.DOUBLE) {
+            return pState;
+        }
+        return pState.setValue(TYPE,
+                direction.getAxisDirection() == AxisDirection.POSITIVE ? SlabType.TOP : SlabType.BOTTOM);
     }
 
     @Override
